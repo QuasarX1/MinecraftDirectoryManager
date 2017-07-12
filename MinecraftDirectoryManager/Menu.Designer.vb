@@ -47,15 +47,23 @@ Partial Class Menu
         Me.Directories_Mods_Label = New System.Windows.Forms.Label()
         Me.ModsInDirectory_Mods_ListBox = New System.Windows.Forms.ListBox()
         Me.DirectoryNames_Mods_ListBox = New System.Windows.Forms.ListBox()
+        Me.Versions_TabPage = New System.Windows.Forms.TabPage()
+        Me.RemoveVersion_Versions_Button = New System.Windows.Forms.Button()
+        Me.VersionsInDirectory_Versions_Label = New System.Windows.Forms.Label()
+        Me.Directories_Versions_Label = New System.Windows.Forms.Label()
+        Me.VersionsInDirectory_Versions_ListBox = New System.Windows.Forms.ListBox()
+        Me.DirectoryNames_Versions_ListBox = New System.Windows.Forms.ListBox()
         Me.MainMenu_TabControl.SuspendLayout()
         Me.Directories_TabPage.SuspendLayout()
         Me.Mods_TabPage.SuspendLayout()
+        Me.Versions_TabPage.SuspendLayout()
         Me.SuspendLayout()
         '
         'MainMenu_TabControl
         '
         Me.MainMenu_TabControl.Controls.Add(Me.Directories_TabPage)
         Me.MainMenu_TabControl.Controls.Add(Me.Mods_TabPage)
+        Me.MainMenu_TabControl.Controls.Add(Me.Versions_TabPage)
         Me.MainMenu_TabControl.Location = New System.Drawing.Point(12, 12)
         Me.MainMenu_TabControl.Name = "MainMenu_TabControl"
         Me.MainMenu_TabControl.SelectedIndex = 0
@@ -297,6 +305,66 @@ Partial Class Menu
         Me.DirectoryNames_Mods_ListBox.Size = New System.Drawing.Size(233, 354)
         Me.DirectoryNames_Mods_ListBox.TabIndex = 1
         '
+        'Versions_TabPage
+        '
+        Me.Versions_TabPage.Controls.Add(Me.RemoveVersion_Versions_Button)
+        Me.Versions_TabPage.Controls.Add(Me.VersionsInDirectory_Versions_Label)
+        Me.Versions_TabPage.Controls.Add(Me.Directories_Versions_Label)
+        Me.Versions_TabPage.Controls.Add(Me.VersionsInDirectory_Versions_ListBox)
+        Me.Versions_TabPage.Controls.Add(Me.DirectoryNames_Versions_ListBox)
+        Me.Versions_TabPage.Location = New System.Drawing.Point(8, 39)
+        Me.Versions_TabPage.Name = "Versions_TabPage"
+        Me.Versions_TabPage.Padding = New System.Windows.Forms.Padding(3)
+        Me.Versions_TabPage.Size = New System.Drawing.Size(1258, 733)
+        Me.Versions_TabPage.TabIndex = 2
+        Me.Versions_TabPage.Text = "Versions"
+        Me.Versions_TabPage.UseVisualStyleBackColor = True
+        '
+        'RemoveVersion_Versions_Button
+        '
+        Me.RemoveVersion_Versions_Button.Location = New System.Drawing.Point(305, 451)
+        Me.RemoveVersion_Versions_Button.Name = "RemoveVersion_Versions_Button"
+        Me.RemoveVersion_Versions_Button.Size = New System.Drawing.Size(233, 70)
+        Me.RemoveVersion_Versions_Button.TabIndex = 13
+        Me.RemoveVersion_Versions_Button.Text = "Remove Version"
+        Me.RemoveVersion_Versions_Button.UseVisualStyleBackColor = True
+        '
+        'VersionsInDirectory_Versions_Label
+        '
+        Me.VersionsInDirectory_Versions_Label.AutoSize = True
+        Me.VersionsInDirectory_Versions_Label.Location = New System.Drawing.Point(300, 24)
+        Me.VersionsInDirectory_Versions_Label.Name = "VersionsInDirectory_Versions_Label"
+        Me.VersionsInDirectory_Versions_Label.Size = New System.Drawing.Size(217, 25)
+        Me.VersionsInDirectory_Versions_Label.TabIndex = 12
+        Me.VersionsInDirectory_Versions_Label.Text = "Versions In Directory:"
+        '
+        'Directories_Versions_Label
+        '
+        Me.Directories_Versions_Label.AutoSize = True
+        Me.Directories_Versions_Label.Location = New System.Drawing.Point(26, 24)
+        Me.Directories_Versions_Label.Name = "Directories_Versions_Label"
+        Me.Directories_Versions_Label.Size = New System.Drawing.Size(121, 25)
+        Me.Directories_Versions_Label.TabIndex = 11
+        Me.Directories_Versions_Label.Text = "Directories:"
+        '
+        'VersionsInDirectory_Versions_ListBox
+        '
+        Me.VersionsInDirectory_Versions_ListBox.FormattingEnabled = True
+        Me.VersionsInDirectory_Versions_ListBox.ItemHeight = 25
+        Me.VersionsInDirectory_Versions_ListBox.Location = New System.Drawing.Point(305, 69)
+        Me.VersionsInDirectory_Versions_ListBox.Name = "VersionsInDirectory_Versions_ListBox"
+        Me.VersionsInDirectory_Versions_ListBox.Size = New System.Drawing.Size(233, 354)
+        Me.VersionsInDirectory_Versions_ListBox.TabIndex = 10
+        '
+        'DirectoryNames_Versions_ListBox
+        '
+        Me.DirectoryNames_Versions_ListBox.FormattingEnabled = True
+        Me.DirectoryNames_Versions_ListBox.ItemHeight = 25
+        Me.DirectoryNames_Versions_ListBox.Location = New System.Drawing.Point(31, 69)
+        Me.DirectoryNames_Versions_ListBox.Name = "DirectoryNames_Versions_ListBox"
+        Me.DirectoryNames_Versions_ListBox.Size = New System.Drawing.Size(233, 354)
+        Me.DirectoryNames_Versions_ListBox.TabIndex = 9
+        '
         'Menu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
@@ -310,6 +378,8 @@ Partial Class Menu
         Me.Directories_TabPage.PerformLayout()
         Me.Mods_TabPage.ResumeLayout(False)
         Me.Mods_TabPage.PerformLayout()
+        Me.Versions_TabPage.ResumeLayout(False)
+        Me.Versions_TabPage.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -339,4 +409,10 @@ Partial Class Menu
     Friend WithEvents ModsInDirectory_Mods_Label As Label
     Friend WithEvents ResetChages_Mods_Button As Button
     Friend WithEvents UpdateMods_Mods_Button As Button
+    Friend WithEvents Versions_TabPage As TabPage
+    Friend WithEvents RemoveVersion_Versions_Button As Button
+    Friend WithEvents VersionsInDirectory_Versions_Label As Label
+    Friend WithEvents Directories_Versions_Label As Label
+    Friend WithEvents VersionsInDirectory_Versions_ListBox As ListBox
+    Friend WithEvents DirectoryNames_Versions_ListBox As ListBox
 End Class
