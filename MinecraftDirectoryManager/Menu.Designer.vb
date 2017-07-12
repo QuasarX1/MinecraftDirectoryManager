@@ -53,6 +53,8 @@ Partial Class Menu
         Me.Directories_Versions_Label = New System.Windows.Forms.Label()
         Me.VersionsInDirectory_Versions_ListBox = New System.Windows.Forms.ListBox()
         Me.DirectoryNames_Versions_ListBox = New System.Windows.Forms.ListBox()
+        Me.ResetChanges_Versions_Button = New System.Windows.Forms.Button()
+        Me.UpdateDirectories_Versions_Button = New System.Windows.Forms.Button()
         Me.MainMenu_TabControl.SuspendLayout()
         Me.Directories_TabPage.SuspendLayout()
         Me.Mods_TabPage.SuspendLayout()
@@ -307,6 +309,8 @@ Partial Class Menu
         '
         'Versions_TabPage
         '
+        Me.Versions_TabPage.Controls.Add(Me.ResetChanges_Versions_Button)
+        Me.Versions_TabPage.Controls.Add(Me.UpdateDirectories_Versions_Button)
         Me.Versions_TabPage.Controls.Add(Me.RemoveVersion_Versions_Button)
         Me.Versions_TabPage.Controls.Add(Me.VersionsInDirectory_Versions_Label)
         Me.Versions_TabPage.Controls.Add(Me.Directories_Versions_Label)
@@ -365,6 +369,24 @@ Partial Class Menu
         Me.DirectoryNames_Versions_ListBox.Size = New System.Drawing.Size(233, 354)
         Me.DirectoryNames_Versions_ListBox.TabIndex = 9
         '
+        'ResetChanges_Versions_Button
+        '
+        Me.ResetChanges_Versions_Button.Location = New System.Drawing.Point(581, 353)
+        Me.ResetChanges_Versions_Button.Name = "ResetChanges_Versions_Button"
+        Me.ResetChanges_Versions_Button.Size = New System.Drawing.Size(233, 70)
+        Me.ResetChanges_Versions_Button.TabIndex = 15
+        Me.ResetChanges_Versions_Button.Text = "Reset Chages"
+        Me.ResetChanges_Versions_Button.UseVisualStyleBackColor = True
+        '
+        'UpdateDirectories_Versions_Button
+        '
+        Me.UpdateDirectories_Versions_Button.Location = New System.Drawing.Point(581, 69)
+        Me.UpdateDirectories_Versions_Button.Name = "UpdateDirectories_Versions_Button"
+        Me.UpdateDirectories_Versions_Button.Size = New System.Drawing.Size(233, 70)
+        Me.UpdateDirectories_Versions_Button.TabIndex = 14
+        Me.UpdateDirectories_Versions_Button.Text = "Update Versions"
+        Me.UpdateDirectories_Versions_Button.UseVisualStyleBackColor = True
+        '
         'Menu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
@@ -415,4 +437,6 @@ Partial Class Menu
     Friend WithEvents Directories_Versions_Label As Label
     Friend WithEvents VersionsInDirectory_Versions_ListBox As ListBox
     Friend WithEvents DirectoryNames_Versions_ListBox As ListBox
+    Friend WithEvents ResetChanges_Versions_Button As Button
+    Friend WithEvents UpdateDirectories_Versions_Button As Button
 End Class
