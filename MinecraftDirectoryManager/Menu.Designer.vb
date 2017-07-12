@@ -93,10 +93,10 @@ Partial Class Menu
         'MainMenu_TabControl
         '
         Me.MainMenu_TabControl.Controls.Add(Me.Directories_TabPage)
-        Me.MainMenu_TabControl.Controls.Add(Me.Mods_TabPage)
-        Me.MainMenu_TabControl.Controls.Add(Me.Versions_TabPage)
         Me.MainMenu_TabControl.Controls.Add(Me.ResoursePacks_TabPage)
+        Me.MainMenu_TabControl.Controls.Add(Me.Mods_TabPage)
         Me.MainMenu_TabControl.Controls.Add(Me.Saves_TabPage)
+        Me.MainMenu_TabControl.Controls.Add(Me.Versions_TabPage)
         Me.MainMenu_TabControl.Location = New System.Drawing.Point(12, 12)
         Me.MainMenu_TabControl.Name = "MainMenu_TabControl"
         Me.MainMenu_TabControl.SelectedIndex = 0
