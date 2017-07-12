@@ -68,17 +68,17 @@ Partial Class Menu
         Me.Directories_ResoursePacks_Label = New System.Windows.Forms.Label()
         Me.ResoursePacksInDirectory_ResoursePacks_ListBox = New System.Windows.Forms.ListBox()
         Me.DirectoryNames_ResoursePacks_ListBox = New System.Windows.Forms.ListBox()
-        Me.Button6 = New System.Windows.Forms.Button()
-        Me.Button7 = New System.Windows.Forms.Button()
-        Me.Button8 = New System.Windows.Forms.Button()
-        Me.Button9 = New System.Windows.Forms.Button()
-        Me.Button10 = New System.Windows.Forms.Button()
-        Me.ListBox4 = New System.Windows.Forms.ListBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.ListBox5 = New System.Windows.Forms.ListBox()
-        Me.ListBox6 = New System.Windows.Forms.ListBox()
+        Me.ResetChanges_Saves_Button = New System.Windows.Forms.Button()
+        Me.UpdateSaves_Saves_Button = New System.Windows.Forms.Button()
+        Me.AddSaveFile_Saves_Button = New System.Windows.Forms.Button()
+        Me.RemoveSave_Saves_Button = New System.Windows.Forms.Button()
+        Me.AddSave_Saves_Button = New System.Windows.Forms.Button()
+        Me.AvalableSaves_Saves_ListBox = New System.Windows.Forms.ListBox()
+        Me.AvalableSaves_Saves_Label = New System.Windows.Forms.Label()
+        Me.SavesInDirectory_Saves_Label = New System.Windows.Forms.Label()
+        Me.Directories_Saves_Label = New System.Windows.Forms.Label()
+        Me.SavesInDirectory_Saves_ListBox = New System.Windows.Forms.ListBox()
+        Me.DirectoryNames_Saves_ListBox = New System.Windows.Forms.ListBox()
         Me.DeleteModFile_Mods_Button = New System.Windows.Forms.Button()
         Me.DeleteResoursePackFile_ResourcePacks_Button = New System.Windows.Forms.Button()
         Me.DeleteSaveFile_Saves_Button = New System.Windows.Forms.Button()
@@ -444,17 +444,17 @@ Partial Class Menu
         'Saves_TabPage
         '
         Me.Saves_TabPage.Controls.Add(Me.DeleteSaveFile_Saves_Button)
-        Me.Saves_TabPage.Controls.Add(Me.Button6)
-        Me.Saves_TabPage.Controls.Add(Me.Button7)
-        Me.Saves_TabPage.Controls.Add(Me.Button8)
-        Me.Saves_TabPage.Controls.Add(Me.Button9)
-        Me.Saves_TabPage.Controls.Add(Me.Button10)
-        Me.Saves_TabPage.Controls.Add(Me.ListBox4)
-        Me.Saves_TabPage.Controls.Add(Me.Label4)
-        Me.Saves_TabPage.Controls.Add(Me.Label5)
-        Me.Saves_TabPage.Controls.Add(Me.Label6)
-        Me.Saves_TabPage.Controls.Add(Me.ListBox5)
-        Me.Saves_TabPage.Controls.Add(Me.ListBox6)
+        Me.Saves_TabPage.Controls.Add(Me.ResetChanges_Saves_Button)
+        Me.Saves_TabPage.Controls.Add(Me.UpdateSaves_Saves_Button)
+        Me.Saves_TabPage.Controls.Add(Me.AddSaveFile_Saves_Button)
+        Me.Saves_TabPage.Controls.Add(Me.RemoveSave_Saves_Button)
+        Me.Saves_TabPage.Controls.Add(Me.AddSave_Saves_Button)
+        Me.Saves_TabPage.Controls.Add(Me.AvalableSaves_Saves_ListBox)
+        Me.Saves_TabPage.Controls.Add(Me.AvalableSaves_Saves_Label)
+        Me.Saves_TabPage.Controls.Add(Me.SavesInDirectory_Saves_Label)
+        Me.Saves_TabPage.Controls.Add(Me.Directories_Saves_Label)
+        Me.Saves_TabPage.Controls.Add(Me.SavesInDirectory_Saves_ListBox)
+        Me.Saves_TabPage.Controls.Add(Me.DirectoryNames_Saves_ListBox)
         Me.Saves_TabPage.Location = New System.Drawing.Point(8, 39)
         Me.Saves_TabPage.Name = "Saves_TabPage"
         Me.Saves_TabPage.Padding = New System.Windows.Forms.Padding(3)
@@ -562,104 +562,104 @@ Partial Class Menu
         Me.DirectoryNames_ResoursePacks_ListBox.Size = New System.Drawing.Size(233, 354)
         Me.DirectoryNames_ResoursePacks_ListBox.TabIndex = 12
         '
-        'Button6
+        'ResetChanges_Saves_Button
         '
-        Me.Button6.Location = New System.Drawing.Point(857, 352)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(233, 70)
-        Me.Button6.TabIndex = 22
-        Me.Button6.Text = "Reset Chages"
-        Me.Button6.UseVisualStyleBackColor = True
+        Me.ResetChanges_Saves_Button.Location = New System.Drawing.Point(857, 352)
+        Me.ResetChanges_Saves_Button.Name = "ResetChanges_Saves_Button"
+        Me.ResetChanges_Saves_Button.Size = New System.Drawing.Size(233, 70)
+        Me.ResetChanges_Saves_Button.TabIndex = 22
+        Me.ResetChanges_Saves_Button.Text = "Reset Chages"
+        Me.ResetChanges_Saves_Button.UseVisualStyleBackColor = True
         '
-        'Button7
+        'UpdateSaves_Saves_Button
         '
-        Me.Button7.Location = New System.Drawing.Point(857, 68)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(233, 70)
-        Me.Button7.TabIndex = 21
-        Me.Button7.Text = "Update Mods"
-        Me.Button7.UseVisualStyleBackColor = True
+        Me.UpdateSaves_Saves_Button.Location = New System.Drawing.Point(857, 68)
+        Me.UpdateSaves_Saves_Button.Name = "UpdateSaves_Saves_Button"
+        Me.UpdateSaves_Saves_Button.Size = New System.Drawing.Size(233, 70)
+        Me.UpdateSaves_Saves_Button.TabIndex = 21
+        Me.UpdateSaves_Saves_Button.Text = "Update Saves"
+        Me.UpdateSaves_Saves_Button.UseVisualStyleBackColor = True
         '
-        'Button8
+        'AddSaveFile_Saves_Button
         '
-        Me.Button8.Location = New System.Drawing.Point(577, 549)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(233, 70)
-        Me.Button8.TabIndex = 20
-        Me.Button8.Text = "Add Mod File"
-        Me.Button8.UseVisualStyleBackColor = True
+        Me.AddSaveFile_Saves_Button.Location = New System.Drawing.Point(577, 549)
+        Me.AddSaveFile_Saves_Button.Name = "AddSaveFile_Saves_Button"
+        Me.AddSaveFile_Saves_Button.Size = New System.Drawing.Size(233, 70)
+        Me.AddSaveFile_Saves_Button.TabIndex = 20
+        Me.AddSaveFile_Saves_Button.Text = "Add Save File"
+        Me.AddSaveFile_Saves_Button.UseVisualStyleBackColor = True
         '
-        'Button9
+        'RemoveSave_Saves_Button
         '
-        Me.Button9.Location = New System.Drawing.Point(301, 450)
-        Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(233, 70)
-        Me.Button9.TabIndex = 19
-        Me.Button9.Text = "Remove Mod"
-        Me.Button9.UseVisualStyleBackColor = True
+        Me.RemoveSave_Saves_Button.Location = New System.Drawing.Point(301, 450)
+        Me.RemoveSave_Saves_Button.Name = "RemoveSave_Saves_Button"
+        Me.RemoveSave_Saves_Button.Size = New System.Drawing.Size(233, 70)
+        Me.RemoveSave_Saves_Button.TabIndex = 19
+        Me.RemoveSave_Saves_Button.Text = "Remove Save"
+        Me.RemoveSave_Saves_Button.UseVisualStyleBackColor = True
         '
-        'Button10
+        'AddSave_Saves_Button
         '
-        Me.Button10.Location = New System.Drawing.Point(577, 450)
-        Me.Button10.Name = "Button10"
-        Me.Button10.Size = New System.Drawing.Size(233, 70)
-        Me.Button10.TabIndex = 18
-        Me.Button10.Text = "Add Mod"
-        Me.Button10.UseVisualStyleBackColor = True
+        Me.AddSave_Saves_Button.Location = New System.Drawing.Point(577, 450)
+        Me.AddSave_Saves_Button.Name = "AddSave_Saves_Button"
+        Me.AddSave_Saves_Button.Size = New System.Drawing.Size(233, 70)
+        Me.AddSave_Saves_Button.TabIndex = 18
+        Me.AddSave_Saves_Button.Text = "Add Save"
+        Me.AddSave_Saves_Button.UseVisualStyleBackColor = True
         '
-        'ListBox4
+        'AvalableSaves_Saves_ListBox
         '
-        Me.ListBox4.FormattingEnabled = True
-        Me.ListBox4.ItemHeight = 25
-        Me.ListBox4.Location = New System.Drawing.Point(577, 68)
-        Me.ListBox4.Name = "ListBox4"
-        Me.ListBox4.Size = New System.Drawing.Size(233, 354)
-        Me.ListBox4.TabIndex = 17
+        Me.AvalableSaves_Saves_ListBox.FormattingEnabled = True
+        Me.AvalableSaves_Saves_ListBox.ItemHeight = 25
+        Me.AvalableSaves_Saves_ListBox.Location = New System.Drawing.Point(577, 68)
+        Me.AvalableSaves_Saves_ListBox.Name = "AvalableSaves_Saves_ListBox"
+        Me.AvalableSaves_Saves_ListBox.Size = New System.Drawing.Size(233, 354)
+        Me.AvalableSaves_Saves_ListBox.TabIndex = 17
         '
-        'Label4
+        'AvalableSaves_Saves_Label
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(572, 23)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(160, 25)
-        Me.Label4.TabIndex = 16
-        Me.Label4.Text = "Avalable Mods:"
+        Me.AvalableSaves_Saves_Label.AutoSize = True
+        Me.AvalableSaves_Saves_Label.Location = New System.Drawing.Point(572, 23)
+        Me.AvalableSaves_Saves_Label.Name = "AvalableSaves_Saves_Label"
+        Me.AvalableSaves_Saves_Label.Size = New System.Drawing.Size(167, 25)
+        Me.AvalableSaves_Saves_Label.TabIndex = 16
+        Me.AvalableSaves_Saves_Label.Text = "Avalable Saves:"
         '
-        'Label5
+        'SavesInDirectory_Saves_Label
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(296, 23)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(186, 25)
-        Me.Label5.TabIndex = 15
-        Me.Label5.Text = "Mods in Directory:"
+        Me.SavesInDirectory_Saves_Label.AutoSize = True
+        Me.SavesInDirectory_Saves_Label.Location = New System.Drawing.Point(296, 23)
+        Me.SavesInDirectory_Saves_Label.Name = "SavesInDirectory_Saves_Label"
+        Me.SavesInDirectory_Saves_Label.Size = New System.Drawing.Size(193, 25)
+        Me.SavesInDirectory_Saves_Label.TabIndex = 15
+        Me.SavesInDirectory_Saves_Label.Text = "Saves in Directory:"
         '
-        'Label6
+        'Directories_Saves_Label
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(22, 23)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(121, 25)
-        Me.Label6.TabIndex = 14
-        Me.Label6.Text = "Directories:"
+        Me.Directories_Saves_Label.AutoSize = True
+        Me.Directories_Saves_Label.Location = New System.Drawing.Point(22, 23)
+        Me.Directories_Saves_Label.Name = "Directories_Saves_Label"
+        Me.Directories_Saves_Label.Size = New System.Drawing.Size(121, 25)
+        Me.Directories_Saves_Label.TabIndex = 14
+        Me.Directories_Saves_Label.Text = "Directories:"
         '
-        'ListBox5
+        'SavesInDirectory_Saves_ListBox
         '
-        Me.ListBox5.FormattingEnabled = True
-        Me.ListBox5.ItemHeight = 25
-        Me.ListBox5.Location = New System.Drawing.Point(301, 68)
-        Me.ListBox5.Name = "ListBox5"
-        Me.ListBox5.Size = New System.Drawing.Size(233, 354)
-        Me.ListBox5.TabIndex = 13
+        Me.SavesInDirectory_Saves_ListBox.FormattingEnabled = True
+        Me.SavesInDirectory_Saves_ListBox.ItemHeight = 25
+        Me.SavesInDirectory_Saves_ListBox.Location = New System.Drawing.Point(301, 68)
+        Me.SavesInDirectory_Saves_ListBox.Name = "SavesInDirectory_Saves_ListBox"
+        Me.SavesInDirectory_Saves_ListBox.Size = New System.Drawing.Size(233, 354)
+        Me.SavesInDirectory_Saves_ListBox.TabIndex = 13
         '
-        'ListBox6
+        'DirectoryNames_Saves_ListBox
         '
-        Me.ListBox6.FormattingEnabled = True
-        Me.ListBox6.ItemHeight = 25
-        Me.ListBox6.Location = New System.Drawing.Point(27, 68)
-        Me.ListBox6.Name = "ListBox6"
-        Me.ListBox6.Size = New System.Drawing.Size(233, 354)
-        Me.ListBox6.TabIndex = 12
+        Me.DirectoryNames_Saves_ListBox.FormattingEnabled = True
+        Me.DirectoryNames_Saves_ListBox.ItemHeight = 25
+        Me.DirectoryNames_Saves_ListBox.Location = New System.Drawing.Point(27, 68)
+        Me.DirectoryNames_Saves_ListBox.Name = "DirectoryNames_Saves_ListBox"
+        Me.DirectoryNames_Saves_ListBox.Size = New System.Drawing.Size(233, 354)
+        Me.DirectoryNames_Saves_ListBox.TabIndex = 12
         '
         'DeleteModFile_Mods_Button
         '
@@ -760,15 +760,15 @@ Partial Class Menu
     Friend WithEvents ResoursePacksInDirectory_ResoursePacks_ListBox As ListBox
     Friend WithEvents DirectoryNames_ResoursePacks_ListBox As ListBox
     Friend WithEvents DeleteSaveFile_Saves_Button As Button
-    Friend WithEvents Button6 As Button
-    Friend WithEvents Button7 As Button
-    Friend WithEvents Button8 As Button
-    Friend WithEvents Button9 As Button
-    Friend WithEvents Button10 As Button
-    Friend WithEvents ListBox4 As ListBox
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Label6 As Label
-    Friend WithEvents ListBox5 As ListBox
-    Friend WithEvents ListBox6 As ListBox
+    Friend WithEvents ResetChanges_Saves_Button As Button
+    Friend WithEvents UpdateSaves_Saves_Button As Button
+    Friend WithEvents AddSaveFile_Saves_Button As Button
+    Friend WithEvents RemoveSave_Saves_Button As Button
+    Friend WithEvents AddSave_Saves_Button As Button
+    Friend WithEvents AvalableSaves_Saves_ListBox As ListBox
+    Friend WithEvents AvalableSaves_Saves_Label As Label
+    Friend WithEvents SavesInDirectory_Saves_Label As Label
+    Friend WithEvents Directories_Saves_Label As Label
+    Friend WithEvents SavesInDirectory_Saves_ListBox As ListBox
+    Friend WithEvents DirectoryNames_Saves_ListBox As ListBox
 End Class
