@@ -55,6 +55,8 @@ Partial Class Menu
         Me.DirectoryNames_Versions_ListBox = New System.Windows.Forms.ListBox()
         Me.ResetChanges_Versions_Button = New System.Windows.Forms.Button()
         Me.UpdateDirectories_Versions_Button = New System.Windows.Forms.Button()
+        Me.ResoursePacks_TabPage = New System.Windows.Forms.TabPage()
+        Me.Saves_TabPage = New System.Windows.Forms.TabPage()
         Me.MainMenu_TabControl.SuspendLayout()
         Me.Directories_TabPage.SuspendLayout()
         Me.Mods_TabPage.SuspendLayout()
@@ -66,6 +68,8 @@ Partial Class Menu
         Me.MainMenu_TabControl.Controls.Add(Me.Directories_TabPage)
         Me.MainMenu_TabControl.Controls.Add(Me.Mods_TabPage)
         Me.MainMenu_TabControl.Controls.Add(Me.Versions_TabPage)
+        Me.MainMenu_TabControl.Controls.Add(Me.ResoursePacks_TabPage)
+        Me.MainMenu_TabControl.Controls.Add(Me.Saves_TabPage)
         Me.MainMenu_TabControl.Location = New System.Drawing.Point(12, 12)
         Me.MainMenu_TabControl.Name = "MainMenu_TabControl"
         Me.MainMenu_TabControl.SelectedIndex = 0
@@ -387,6 +391,26 @@ Partial Class Menu
         Me.UpdateDirectories_Versions_Button.Text = "Update Versions"
         Me.UpdateDirectories_Versions_Button.UseVisualStyleBackColor = True
         '
+        'ResoursePacks_TabPage
+        '
+        Me.ResoursePacks_TabPage.Location = New System.Drawing.Point(8, 39)
+        Me.ResoursePacks_TabPage.Name = "ResoursePacks_TabPage"
+        Me.ResoursePacks_TabPage.Padding = New System.Windows.Forms.Padding(3)
+        Me.ResoursePacks_TabPage.Size = New System.Drawing.Size(1258, 733)
+        Me.ResoursePacks_TabPage.TabIndex = 3
+        Me.ResoursePacks_TabPage.Text = "Resourse Packs"
+        Me.ResoursePacks_TabPage.UseVisualStyleBackColor = True
+        '
+        'Saves_TabPage
+        '
+        Me.Saves_TabPage.Location = New System.Drawing.Point(8, 39)
+        Me.Saves_TabPage.Name = "Saves_TabPage"
+        Me.Saves_TabPage.Padding = New System.Windows.Forms.Padding(3)
+        Me.Saves_TabPage.Size = New System.Drawing.Size(1258, 733)
+        Me.Saves_TabPage.TabIndex = 4
+        Me.Saves_TabPage.Text = "Saves"
+        Me.Saves_TabPage.UseVisualStyleBackColor = True
+        '
         'Menu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
@@ -439,4 +463,6 @@ Partial Class Menu
     Friend WithEvents DirectoryNames_Versions_ListBox As ListBox
     Friend WithEvents ResetChanges_Versions_Button As Button
     Friend WithEvents UpdateDirectories_Versions_Button As Button
+    Friend WithEvents ResoursePacks_TabPage As TabPage
+    Friend WithEvents Saves_TabPage As TabPage
 End Class
