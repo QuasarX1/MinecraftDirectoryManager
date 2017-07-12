@@ -57,10 +57,37 @@ Partial Class Menu
         Me.UpdateDirectories_Versions_Button = New System.Windows.Forms.Button()
         Me.ResoursePacks_TabPage = New System.Windows.Forms.TabPage()
         Me.Saves_TabPage = New System.Windows.Forms.TabPage()
+        Me.ResetChanges_ResoursePacks_Button = New System.Windows.Forms.Button()
+        Me.UpdateResoursePacks_ResoursePacks_Button = New System.Windows.Forms.Button()
+        Me.AddResoursePackFile_ResoursePacks_Button = New System.Windows.Forms.Button()
+        Me.RemoveResoursePack_ResoursePacks_Button = New System.Windows.Forms.Button()
+        Me.AddResoursePack_ResoursePacks_Button = New System.Windows.Forms.Button()
+        Me.AvalableResoursePacks_ResoursePacks_ListBox = New System.Windows.Forms.ListBox()
+        Me.AvalableResoursePacks_ResoursePacks_Label = New System.Windows.Forms.Label()
+        Me.ResoursePacksInDirectory_ResoursePacks_Label = New System.Windows.Forms.Label()
+        Me.Directories_ResoursePacks_Label = New System.Windows.Forms.Label()
+        Me.ResoursePacksInDirectory_ResoursePacks_ListBox = New System.Windows.Forms.ListBox()
+        Me.DirectoryNames_ResoursePacks_ListBox = New System.Windows.Forms.ListBox()
+        Me.Button6 = New System.Windows.Forms.Button()
+        Me.Button7 = New System.Windows.Forms.Button()
+        Me.Button8 = New System.Windows.Forms.Button()
+        Me.Button9 = New System.Windows.Forms.Button()
+        Me.Button10 = New System.Windows.Forms.Button()
+        Me.ListBox4 = New System.Windows.Forms.ListBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.ListBox5 = New System.Windows.Forms.ListBox()
+        Me.ListBox6 = New System.Windows.Forms.ListBox()
+        Me.DeleteModFile_Mods_Button = New System.Windows.Forms.Button()
+        Me.DeleteResoursePackFile_ResourcePacks_Button = New System.Windows.Forms.Button()
+        Me.DeleteSaveFile_Saves_Button = New System.Windows.Forms.Button()
         Me.MainMenu_TabControl.SuspendLayout()
         Me.Directories_TabPage.SuspendLayout()
         Me.Mods_TabPage.SuspendLayout()
         Me.Versions_TabPage.SuspendLayout()
+        Me.ResoursePacks_TabPage.SuspendLayout()
+        Me.Saves_TabPage.SuspendLayout()
         Me.SuspendLayout()
         '
         'MainMenu_TabControl
@@ -193,6 +220,7 @@ Partial Class Menu
         '
         'Mods_TabPage
         '
+        Me.Mods_TabPage.Controls.Add(Me.DeleteModFile_Mods_Button)
         Me.Mods_TabPage.Controls.Add(Me.ResetChages_Mods_Button)
         Me.Mods_TabPage.Controls.Add(Me.UpdateMods_Mods_Button)
         Me.Mods_TabPage.Controls.Add(Me.AddModFile_Mods_Button)
@@ -393,6 +421,18 @@ Partial Class Menu
         '
         'ResoursePacks_TabPage
         '
+        Me.ResoursePacks_TabPage.Controls.Add(Me.DeleteResoursePackFile_ResourcePacks_Button)
+        Me.ResoursePacks_TabPage.Controls.Add(Me.ResetChanges_ResoursePacks_Button)
+        Me.ResoursePacks_TabPage.Controls.Add(Me.UpdateResoursePacks_ResoursePacks_Button)
+        Me.ResoursePacks_TabPage.Controls.Add(Me.AddResoursePackFile_ResoursePacks_Button)
+        Me.ResoursePacks_TabPage.Controls.Add(Me.RemoveResoursePack_ResoursePacks_Button)
+        Me.ResoursePacks_TabPage.Controls.Add(Me.AddResoursePack_ResoursePacks_Button)
+        Me.ResoursePacks_TabPage.Controls.Add(Me.AvalableResoursePacks_ResoursePacks_ListBox)
+        Me.ResoursePacks_TabPage.Controls.Add(Me.AvalableResoursePacks_ResoursePacks_Label)
+        Me.ResoursePacks_TabPage.Controls.Add(Me.ResoursePacksInDirectory_ResoursePacks_Label)
+        Me.ResoursePacks_TabPage.Controls.Add(Me.Directories_ResoursePacks_Label)
+        Me.ResoursePacks_TabPage.Controls.Add(Me.ResoursePacksInDirectory_ResoursePacks_ListBox)
+        Me.ResoursePacks_TabPage.Controls.Add(Me.DirectoryNames_ResoursePacks_ListBox)
         Me.ResoursePacks_TabPage.Location = New System.Drawing.Point(8, 39)
         Me.ResoursePacks_TabPage.Name = "ResoursePacks_TabPage"
         Me.ResoursePacks_TabPage.Padding = New System.Windows.Forms.Padding(3)
@@ -403,6 +443,18 @@ Partial Class Menu
         '
         'Saves_TabPage
         '
+        Me.Saves_TabPage.Controls.Add(Me.DeleteSaveFile_Saves_Button)
+        Me.Saves_TabPage.Controls.Add(Me.Button6)
+        Me.Saves_TabPage.Controls.Add(Me.Button7)
+        Me.Saves_TabPage.Controls.Add(Me.Button8)
+        Me.Saves_TabPage.Controls.Add(Me.Button9)
+        Me.Saves_TabPage.Controls.Add(Me.Button10)
+        Me.Saves_TabPage.Controls.Add(Me.ListBox4)
+        Me.Saves_TabPage.Controls.Add(Me.Label4)
+        Me.Saves_TabPage.Controls.Add(Me.Label5)
+        Me.Saves_TabPage.Controls.Add(Me.Label6)
+        Me.Saves_TabPage.Controls.Add(Me.ListBox5)
+        Me.Saves_TabPage.Controls.Add(Me.ListBox6)
         Me.Saves_TabPage.Location = New System.Drawing.Point(8, 39)
         Me.Saves_TabPage.Name = "Saves_TabPage"
         Me.Saves_TabPage.Padding = New System.Windows.Forms.Padding(3)
@@ -410,6 +462,231 @@ Partial Class Menu
         Me.Saves_TabPage.TabIndex = 4
         Me.Saves_TabPage.Text = "Saves"
         Me.Saves_TabPage.UseVisualStyleBackColor = True
+        '
+        'ResetChanges_ResoursePacks_Button
+        '
+        Me.ResetChanges_ResoursePacks_Button.Location = New System.Drawing.Point(865, 360)
+        Me.ResetChanges_ResoursePacks_Button.Name = "ResetChanges_ResoursePacks_Button"
+        Me.ResetChanges_ResoursePacks_Button.Size = New System.Drawing.Size(233, 70)
+        Me.ResetChanges_ResoursePacks_Button.TabIndex = 22
+        Me.ResetChanges_ResoursePacks_Button.Text = "Reset Chages"
+        Me.ResetChanges_ResoursePacks_Button.UseVisualStyleBackColor = True
+        '
+        'UpdateResoursePacks_ResoursePacks_Button
+        '
+        Me.UpdateResoursePacks_ResoursePacks_Button.Location = New System.Drawing.Point(865, 76)
+        Me.UpdateResoursePacks_ResoursePacks_Button.Name = "UpdateResoursePacks_ResoursePacks_Button"
+        Me.UpdateResoursePacks_ResoursePacks_Button.Size = New System.Drawing.Size(233, 70)
+        Me.UpdateResoursePacks_ResoursePacks_Button.TabIndex = 21
+        Me.UpdateResoursePacks_ResoursePacks_Button.Text = "Update Resourse Packs"
+        Me.UpdateResoursePacks_ResoursePacks_Button.UseVisualStyleBackColor = True
+        '
+        'AddResoursePackFile_ResoursePacks_Button
+        '
+        Me.AddResoursePackFile_ResoursePacks_Button.Location = New System.Drawing.Point(585, 557)
+        Me.AddResoursePackFile_ResoursePacks_Button.Name = "AddResoursePackFile_ResoursePacks_Button"
+        Me.AddResoursePackFile_ResoursePacks_Button.Size = New System.Drawing.Size(233, 70)
+        Me.AddResoursePackFile_ResoursePacks_Button.TabIndex = 20
+        Me.AddResoursePackFile_ResoursePacks_Button.Text = "Add Resourse Pack File"
+        Me.AddResoursePackFile_ResoursePacks_Button.UseVisualStyleBackColor = True
+        '
+        'RemoveResoursePack_ResoursePacks_Button
+        '
+        Me.RemoveResoursePack_ResoursePacks_Button.Location = New System.Drawing.Point(309, 458)
+        Me.RemoveResoursePack_ResoursePacks_Button.Name = "RemoveResoursePack_ResoursePacks_Button"
+        Me.RemoveResoursePack_ResoursePacks_Button.Size = New System.Drawing.Size(233, 70)
+        Me.RemoveResoursePack_ResoursePacks_Button.TabIndex = 19
+        Me.RemoveResoursePack_ResoursePacks_Button.Text = "Remove Resourse Pack"
+        Me.RemoveResoursePack_ResoursePacks_Button.UseVisualStyleBackColor = True
+        '
+        'AddResoursePack_ResoursePacks_Button
+        '
+        Me.AddResoursePack_ResoursePacks_Button.Location = New System.Drawing.Point(585, 458)
+        Me.AddResoursePack_ResoursePacks_Button.Name = "AddResoursePack_ResoursePacks_Button"
+        Me.AddResoursePack_ResoursePacks_Button.Size = New System.Drawing.Size(233, 70)
+        Me.AddResoursePack_ResoursePacks_Button.TabIndex = 18
+        Me.AddResoursePack_ResoursePacks_Button.Text = "Add Resourse Pack"
+        Me.AddResoursePack_ResoursePacks_Button.UseVisualStyleBackColor = True
+        '
+        'AvalableResoursePacks_ResoursePacks_ListBox
+        '
+        Me.AvalableResoursePacks_ResoursePacks_ListBox.FormattingEnabled = True
+        Me.AvalableResoursePacks_ResoursePacks_ListBox.ItemHeight = 25
+        Me.AvalableResoursePacks_ResoursePacks_ListBox.Location = New System.Drawing.Point(585, 76)
+        Me.AvalableResoursePacks_ResoursePacks_ListBox.Name = "AvalableResoursePacks_ResoursePacks_ListBox"
+        Me.AvalableResoursePacks_ResoursePacks_ListBox.Size = New System.Drawing.Size(233, 354)
+        Me.AvalableResoursePacks_ResoursePacks_ListBox.TabIndex = 17
+        '
+        'AvalableResoursePacks_ResoursePacks_Label
+        '
+        Me.AvalableResoursePacks_ResoursePacks_Label.AutoSize = True
+        Me.AvalableResoursePacks_ResoursePacks_Label.Location = New System.Drawing.Point(584, 31)
+        Me.AvalableResoursePacks_ResoursePacks_Label.Name = "AvalableResoursePacks_ResoursePacks_Label"
+        Me.AvalableResoursePacks_ResoursePacks_Label.Size = New System.Drawing.Size(264, 25)
+        Me.AvalableResoursePacks_ResoursePacks_Label.TabIndex = 16
+        Me.AvalableResoursePacks_ResoursePacks_Label.Text = "Avalable Resourse Packs:"
+        '
+        'ResoursePacksInDirectory_ResoursePacks_Label
+        '
+        Me.ResoursePacksInDirectory_ResoursePacks_Label.AutoSize = True
+        Me.ResoursePacksInDirectory_ResoursePacks_Label.Location = New System.Drawing.Point(304, 31)
+        Me.ResoursePacksInDirectory_ResoursePacks_Label.Name = "ResoursePacksInDirectory_ResoursePacks_Label"
+        Me.ResoursePacksInDirectory_ResoursePacks_Label.Size = New System.Drawing.Size(290, 25)
+        Me.ResoursePacksInDirectory_ResoursePacks_Label.TabIndex = 15
+        Me.ResoursePacksInDirectory_ResoursePacks_Label.Text = "Resourse Packs in Directory:"
+        '
+        'Directories_ResoursePacks_Label
+        '
+        Me.Directories_ResoursePacks_Label.AutoSize = True
+        Me.Directories_ResoursePacks_Label.Location = New System.Drawing.Point(30, 31)
+        Me.Directories_ResoursePacks_Label.Name = "Directories_ResoursePacks_Label"
+        Me.Directories_ResoursePacks_Label.Size = New System.Drawing.Size(121, 25)
+        Me.Directories_ResoursePacks_Label.TabIndex = 14
+        Me.Directories_ResoursePacks_Label.Text = "Directories:"
+        '
+        'ResoursePacksInDirectory_ResoursePacks_ListBox
+        '
+        Me.ResoursePacksInDirectory_ResoursePacks_ListBox.FormattingEnabled = True
+        Me.ResoursePacksInDirectory_ResoursePacks_ListBox.ItemHeight = 25
+        Me.ResoursePacksInDirectory_ResoursePacks_ListBox.Location = New System.Drawing.Point(309, 76)
+        Me.ResoursePacksInDirectory_ResoursePacks_ListBox.Name = "ResoursePacksInDirectory_ResoursePacks_ListBox"
+        Me.ResoursePacksInDirectory_ResoursePacks_ListBox.Size = New System.Drawing.Size(233, 354)
+        Me.ResoursePacksInDirectory_ResoursePacks_ListBox.TabIndex = 13
+        '
+        'DirectoryNames_ResoursePacks_ListBox
+        '
+        Me.DirectoryNames_ResoursePacks_ListBox.FormattingEnabled = True
+        Me.DirectoryNames_ResoursePacks_ListBox.ItemHeight = 25
+        Me.DirectoryNames_ResoursePacks_ListBox.Location = New System.Drawing.Point(35, 76)
+        Me.DirectoryNames_ResoursePacks_ListBox.Name = "DirectoryNames_ResoursePacks_ListBox"
+        Me.DirectoryNames_ResoursePacks_ListBox.Size = New System.Drawing.Size(233, 354)
+        Me.DirectoryNames_ResoursePacks_ListBox.TabIndex = 12
+        '
+        'Button6
+        '
+        Me.Button6.Location = New System.Drawing.Point(857, 352)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(233, 70)
+        Me.Button6.TabIndex = 22
+        Me.Button6.Text = "Reset Chages"
+        Me.Button6.UseVisualStyleBackColor = True
+        '
+        'Button7
+        '
+        Me.Button7.Location = New System.Drawing.Point(857, 68)
+        Me.Button7.Name = "Button7"
+        Me.Button7.Size = New System.Drawing.Size(233, 70)
+        Me.Button7.TabIndex = 21
+        Me.Button7.Text = "Update Mods"
+        Me.Button7.UseVisualStyleBackColor = True
+        '
+        'Button8
+        '
+        Me.Button8.Location = New System.Drawing.Point(577, 549)
+        Me.Button8.Name = "Button8"
+        Me.Button8.Size = New System.Drawing.Size(233, 70)
+        Me.Button8.TabIndex = 20
+        Me.Button8.Text = "Add Mod File"
+        Me.Button8.UseVisualStyleBackColor = True
+        '
+        'Button9
+        '
+        Me.Button9.Location = New System.Drawing.Point(301, 450)
+        Me.Button9.Name = "Button9"
+        Me.Button9.Size = New System.Drawing.Size(233, 70)
+        Me.Button9.TabIndex = 19
+        Me.Button9.Text = "Remove Mod"
+        Me.Button9.UseVisualStyleBackColor = True
+        '
+        'Button10
+        '
+        Me.Button10.Location = New System.Drawing.Point(577, 450)
+        Me.Button10.Name = "Button10"
+        Me.Button10.Size = New System.Drawing.Size(233, 70)
+        Me.Button10.TabIndex = 18
+        Me.Button10.Text = "Add Mod"
+        Me.Button10.UseVisualStyleBackColor = True
+        '
+        'ListBox4
+        '
+        Me.ListBox4.FormattingEnabled = True
+        Me.ListBox4.ItemHeight = 25
+        Me.ListBox4.Location = New System.Drawing.Point(577, 68)
+        Me.ListBox4.Name = "ListBox4"
+        Me.ListBox4.Size = New System.Drawing.Size(233, 354)
+        Me.ListBox4.TabIndex = 17
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(572, 23)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(160, 25)
+        Me.Label4.TabIndex = 16
+        Me.Label4.Text = "Avalable Mods:"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(296, 23)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(186, 25)
+        Me.Label5.TabIndex = 15
+        Me.Label5.Text = "Mods in Directory:"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(22, 23)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(121, 25)
+        Me.Label6.TabIndex = 14
+        Me.Label6.Text = "Directories:"
+        '
+        'ListBox5
+        '
+        Me.ListBox5.FormattingEnabled = True
+        Me.ListBox5.ItemHeight = 25
+        Me.ListBox5.Location = New System.Drawing.Point(301, 68)
+        Me.ListBox5.Name = "ListBox5"
+        Me.ListBox5.Size = New System.Drawing.Size(233, 354)
+        Me.ListBox5.TabIndex = 13
+        '
+        'ListBox6
+        '
+        Me.ListBox6.FormattingEnabled = True
+        Me.ListBox6.ItemHeight = 25
+        Me.ListBox6.Location = New System.Drawing.Point(27, 68)
+        Me.ListBox6.Name = "ListBox6"
+        Me.ListBox6.Size = New System.Drawing.Size(233, 354)
+        Me.ListBox6.TabIndex = 12
+        '
+        'DeleteModFile_Mods_Button
+        '
+        Me.DeleteModFile_Mods_Button.Location = New System.Drawing.Point(574, 648)
+        Me.DeleteModFile_Mods_Button.Name = "DeleteModFile_Mods_Button"
+        Me.DeleteModFile_Mods_Button.Size = New System.Drawing.Size(233, 70)
+        Me.DeleteModFile_Mods_Button.TabIndex = 12
+        Me.DeleteModFile_Mods_Button.Text = "Delete Mod File"
+        Me.DeleteModFile_Mods_Button.UseVisualStyleBackColor = True
+        '
+        'DeleteResoursePackFile_ResourcePacks_Button
+        '
+        Me.DeleteResoursePackFile_ResourcePacks_Button.Location = New System.Drawing.Point(585, 657)
+        Me.DeleteResoursePackFile_ResourcePacks_Button.Name = "DeleteResoursePackFile_ResourcePacks_Button"
+        Me.DeleteResoursePackFile_ResourcePacks_Button.Size = New System.Drawing.Size(233, 70)
+        Me.DeleteResoursePackFile_ResourcePacks_Button.TabIndex = 23
+        Me.DeleteResoursePackFile_ResourcePacks_Button.Text = "Delete Resourse Pack File"
+        Me.DeleteResoursePackFile_ResourcePacks_Button.UseVisualStyleBackColor = True
+        '
+        'DeleteSaveFile_Saves_Button
+        '
+        Me.DeleteSaveFile_Saves_Button.Location = New System.Drawing.Point(577, 648)
+        Me.DeleteSaveFile_Saves_Button.Name = "DeleteSaveFile_Saves_Button"
+        Me.DeleteSaveFile_Saves_Button.Size = New System.Drawing.Size(233, 70)
+        Me.DeleteSaveFile_Saves_Button.TabIndex = 23
+        Me.DeleteSaveFile_Saves_Button.Text = "Delete Save File"
+        Me.DeleteSaveFile_Saves_Button.UseVisualStyleBackColor = True
         '
         'Menu
         '
@@ -426,6 +703,10 @@ Partial Class Menu
         Me.Mods_TabPage.PerformLayout()
         Me.Versions_TabPage.ResumeLayout(False)
         Me.Versions_TabPage.PerformLayout()
+        Me.ResoursePacks_TabPage.ResumeLayout(False)
+        Me.ResoursePacks_TabPage.PerformLayout()
+        Me.Saves_TabPage.ResumeLayout(False)
+        Me.Saves_TabPage.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -465,4 +746,29 @@ Partial Class Menu
     Friend WithEvents UpdateDirectories_Versions_Button As Button
     Friend WithEvents ResoursePacks_TabPage As TabPage
     Friend WithEvents Saves_TabPage As TabPage
+    Friend WithEvents DeleteModFile_Mods_Button As Button
+    Friend WithEvents DeleteResoursePackFile_ResourcePacks_Button As Button
+    Friend WithEvents ResetChanges_ResoursePacks_Button As Button
+    Friend WithEvents UpdateResoursePacks_ResoursePacks_Button As Button
+    Friend WithEvents AddResoursePackFile_ResoursePacks_Button As Button
+    Friend WithEvents RemoveResoursePack_ResoursePacks_Button As Button
+    Friend WithEvents AddResoursePack_ResoursePacks_Button As Button
+    Friend WithEvents AvalableResoursePacks_ResoursePacks_ListBox As ListBox
+    Friend WithEvents AvalableResoursePacks_ResoursePacks_Label As Label
+    Friend WithEvents ResoursePacksInDirectory_ResoursePacks_Label As Label
+    Friend WithEvents Directories_ResoursePacks_Label As Label
+    Friend WithEvents ResoursePacksInDirectory_ResoursePacks_ListBox As ListBox
+    Friend WithEvents DirectoryNames_ResoursePacks_ListBox As ListBox
+    Friend WithEvents DeleteSaveFile_Saves_Button As Button
+    Friend WithEvents Button6 As Button
+    Friend WithEvents Button7 As Button
+    Friend WithEvents Button8 As Button
+    Friend WithEvents Button9 As Button
+    Friend WithEvents Button10 As Button
+    Friend WithEvents ListBox4 As ListBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Label6 As Label
+    Friend WithEvents ListBox5 As ListBox
+    Friend WithEvents ListBox6 As ListBox
 End Class
