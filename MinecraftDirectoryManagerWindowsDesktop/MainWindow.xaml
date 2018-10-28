@@ -8,12 +8,13 @@
         Title="Minecraft Directory Manager (MDM)" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Name="MainMenuContainer" Width="0.2*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Grid Name="MainMenu">
+        <Grid Name="MainMenu" Grid.Column="0">
             <Grid.RowDefinitions>
+                <RowDefinition Height="0.7*" />
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
@@ -22,17 +23,23 @@
                 <RowDefinition Height="5*" />
             </Grid.RowDefinitions>
 
-            <Button Name="HomeMenuButton" Content="Home" Grid.Row="0" Click="HomeMenuButton_Click" />
+            <Button Name="HideMenuButton" Content="Hide" Grid.Row="0" Click="HideMenuButton_Click" />
 
-            <Button Name="DirectoriesMenuButton" Content="Directories" Grid.Row="1" Click="DirectoriesMenuButton_Click" />
+            <Button Name="HomeMenuButton" Content="Home" Grid.Row="1" Click="HomeMenuButton_Click" />
 
-            <Button Name="SavesMenuButton" Content="Saves" Grid.Row="2" Click="SavesMenuButton_Click" />
+            <Button Name="DirectoriesMenuButton" Content="Directories" Grid.Row="2" Click="DirectoriesMenuButton_Click" />
 
-            <Button Name="VersionsMenuButton" Content="Versions" Grid.Row="3" Click="VersionsMenuButton_Click" />
+            <Button Name="SavesMenuButton" Content="Saves" Grid.Row="3" Click="SavesMenuButton_Click" />
 
-            <Button Name="ModsMenuButton" Content="Mods" Grid.Row="4" Click="ModsMenuButton_Click" />
+            <Button Name="VersionsMenuButton" Content="Versions" Grid.Row="4" Click="VersionsMenuButton_Click" />
+
+            <Button Name="ModsMenuButton" Content="Mods" Grid.Row="5" Click="ModsMenuButton_Click" />
         </Grid>
 
-        <Frame Name="MainDisplayFrame" Grid.Column="1" NavigationUIVisibility="Hidden"/>
+        <Button Name="ShowMenuButton" Content="Show" Grid.Column="0" Visibility="Collapsed" Click="ShowMenuButton_Click" />
+
+        <Border BorderThickness="5" Grid.Column="1" BorderBrush="Black">
+            <Frame Name="MainDisplayFrame" NavigationUIVisibility="Hidden"/>
+        </Border>
     </Grid>
 </Window>

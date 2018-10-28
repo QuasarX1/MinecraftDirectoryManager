@@ -6,9 +6,11 @@
       xmlns:local="clr-namespace:MinecraftDirectoryManagerWindowsDesktop"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="HomePage">
+      Title="HomePage" Background="White">
 
     <Grid>
-        
+        <Image />
+        <Label Content="Version: " Margin="0,0,10,10" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="98"/>
+
     </Grid>
 </Page>

@@ -20,8 +20,6 @@ namespace MinecraftDirectoryManagerWindowsDesktop
     /// </summary>
     public partial class MainWindow : Window
     {
-        private object homePage = null;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -35,6 +33,20 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         }
 
 
+
+        private void HideMenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainMenuContainer.Width = new GridLength(0.05, GridUnitType.Star);
+            MainMenu.Visibility = Visibility.Collapsed;
+            ShowMenuButton.Visibility = Visibility.Visible;
+        }
+
+        private void ShowMenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainMenuContainer.Width = new GridLength(0.2, GridUnitType.Star);
+            ShowMenuButton.Visibility = Visibility.Collapsed;
+            MainMenu.Visibility = Visibility.Visible;
+        }
 
         private void HomeMenuButton_Click(object sender, RoutedEventArgs e)
         {
