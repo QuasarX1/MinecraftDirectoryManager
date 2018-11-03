@@ -20,13 +20,8 @@ namespace MinecraftDirectoryManagerWindowsDesktop
     /// <summary>
     /// Interaction logic for SavesPage.xaml
     /// </summary>
-    public partial class SavesPage : Page, IChangesPage
+    public partial class SavesPage : Page
     {
-        public void Save()
-        {
-
-        }
-
         public System.Collections.ObjectModel.ObservableCollection<UIListString> Saves;
         public System.Collections.ObjectModel.ObservableCollection<UIListString> DirectorySaves;
         public System.Collections.ObjectModel.ObservableCollection<MCDirectory> Directories;
@@ -133,7 +128,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
 
         private void AddNewSaveButton_Click(object sender, RoutedEventArgs e)
         {
-            GetFilepathWindow dioulouge = new GetFilepathWindow();
+            GetFilepathWindow dioulouge = new GetFilepathWindow("", true);
             dioulouge.Submit += AddSave;
 
             dioulouge.Show();

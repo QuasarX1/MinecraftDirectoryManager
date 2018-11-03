@@ -22,11 +22,6 @@ namespace MinecraftDirectoryManagerWindowsDesktop
     /// </summary>
     public partial class VersionsPage : Page
     {
-        public void Save()
-        {
-
-        }
-
         public System.Collections.ObjectModel.ObservableCollection<UIListString> Versions;
         public System.Collections.ObjectModel.ObservableCollection<UIListString> DirectoryVersions;
         public System.Collections.ObjectModel.ObservableCollection<MCDirectory> Directories;
@@ -133,7 +128,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
 
         private void AddNewVersionButton_Click(object sender, RoutedEventArgs e)
         {
-            GetFilepathWindow dioulouge = new GetFilepathWindow();
+            GetFilepathWindow dioulouge = new GetFilepathWindow("", true);
             dioulouge.Submit += AddVersion;
 
             dioulouge.Show();

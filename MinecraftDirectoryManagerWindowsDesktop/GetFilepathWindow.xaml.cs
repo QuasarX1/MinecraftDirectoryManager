@@ -20,21 +20,21 @@ namespace MinecraftDirectoryManagerWindowsDesktop
     public partial class GetFilepathWindow : Window
     {
         public string Path { get; private set; }
-        public bool File { get; private set; }
+        public bool Folder { get; private set; }
 
         public event SubmitPathEventHandler Submit;
 
-        public GetFilepathWindow(string initialPath = "", bool file = false)
+        public GetFilepathWindow(string initialPath = "", bool folder = false)
         {
             InitializeComponent();
 
-            File = file;
+            Folder = folder;
 
             Path = initialPath;
 
             FilepathTextBox.Text = Path;
 
-            if (file)
+            if (folder)
             {
                 ContextLabel.Content = "Path to Folder:";
             }
@@ -44,7 +44,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         {
             if (FilepathTextBox.Text != "")
             {
-                if ((File)? System.IO.File.Exists(FilepathTextBox.Text) : System.IO.Directory.Exists(FilepathTextBox.Text))
+                if ((Folder)? System.IO.Directory.Exists(FilepathTextBox.Text) : System.IO.File.Exists(FilepathTextBox.Text))
                 {
                     Path = FilepathTextBox.Text;
 
