@@ -30,7 +30,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         public System.Collections.ObjectModel.ObservableCollection<UIListString> Saves;
         public System.Collections.ObjectModel.ObservableCollection<UIListString> DirectorySaves;
         public System.Collections.ObjectModel.ObservableCollection<MCDirectory> Directories;
-        public readonly string  FolderPath = Constants.APPDATA + "Saves";
+        public readonly string  FolderPath = Constants.APPDATA + "Versions";
 
         public SavesPage()
         {
@@ -86,21 +86,31 @@ namespace MinecraftDirectoryManagerWindowsDesktop
             DirectorySavesListView.ItemsSource = DirectorySaves;
         }
 
-        public static void CopyFilesRecursively(string source, string target)
+        public static void CopyFilesRecursively(string source, string target, bool initialCall = true)
         {
             DirectoryInfo sourceInfo = new DirectoryInfo(source);
             DirectoryInfo targetInfo = new DirectoryInfo(target);
 
+            if (initialCall)
+            {
+                System.IO.Directory.CreateDirectory(targetInfo.FullName);
+            }
+
             foreach (DirectoryInfo dir in sourceInfo.GetDirectories())
-                CopyFilesRecursively(dir, targetInfo.CreateSubdirectory(dir.Name));
+                CopyFilesRecursively(dir, targetInfo.CreateSubdirectory(dir.Name), false);
             foreach (FileInfo file in sourceInfo.GetFiles())
                 file.CopyTo(System.IO.Path.Combine(targetInfo.FullName, file.Name));
         }
 
-        public static void CopyFilesRecursively(DirectoryInfo source, DirectoryInfo target)
+        public static void CopyFilesRecursively(DirectoryInfo source, DirectoryInfo target, bool initialCall = true)
         {
+            if (initialCall)
+            {
+                System.IO.Directory.CreateDirectory(target.Name);
+            }
+
             foreach (DirectoryInfo dir in source.GetDirectories())
-                CopyFilesRecursively(dir, target.CreateSubdirectory(dir.Name));
+                CopyFilesRecursively(dir, target.CreateSubdirectory(dir.Name), false);
             foreach (FileInfo file in source.GetFiles())
                 file.CopyTo(System.IO.Path.Combine(target.FullName, file.Name));
         }

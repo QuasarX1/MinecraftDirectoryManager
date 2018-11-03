@@ -6,9 +6,93 @@
       xmlns:local="clr-namespace:MinecraftDirectoryManagerWindowsDesktop"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="VersionsPage">
+      Title="VersionsPage" Background="White">
 
-    <Grid>
-        
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition/>
+                <RowDefinition Height="0.09*"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Versions" Grid.Row="0"/>
+
+            <ListView Name="StoredVersionsListView" Grid.Row="1"></ListView>
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button Name="AddNewVersionButton" ToolTip="Import a version folder from an external directory." Content="Add New" Grid.Column="0" Click="AddNewVersionButton_Click"/>
+
+                <Button Name="MoveToDirectoryButton" Content="Move" ToolTip="Move a version into the selected directory." Grid.Column="1" Click="MoveToDirectoryButton_Click"/>
+
+                <Button Name="CopyToDirectoryButton" Content="Copy" ToolTip="Copy a version into the selected directory and change its folder name." Grid.Column="2" Click="CopyToDirectoryButton_Click"/>
+
+                <Button Name="DeleteStoredVersionButton" Content="Delete" ToolTip="Delete the saved copy of version save." Grid.Column="3" Click="DeleteStoredVersionButton_Click"/>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Directories" Grid.Row="0"/>
+
+                <ListView Name="DirectoriesListView" Grid.Row="1" SelectionChanged="DirectoriesListView_SelectionChanged">
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="true">
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                            <GridViewColumn Header="Path" DisplayMemberBinding="{Binding Path}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="0.2*"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Versions in Directory" Grid.Row="0"/>
+
+                <ListView Name="DirectoryVersionsListView" Grid.Row="1"/>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Name="MoveToVersionsButton" Content="Move to Versions" ToolTip="Move the selected out of the directory." Grid.Column="1" Click="MoveToVersionsButton_Click"/>
+
+                    <Button Name="CopyToVersionsButton" Content="Copy to Versions" ToolTip="Move the selected version out of the directory and change its name." Grid.Column="2" Click="CopyToVersionsButton_Click"/>
+
+                    <Button Name="DeleteDirectoryVersionButton" Content="Delete" ToolTip="Delete the selected version from the directory." Grid.Column="3" Click="DeleteDirectoryVersionButton_Click"/>
+                </Grid>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>
