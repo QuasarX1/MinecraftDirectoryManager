@@ -67,6 +67,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -85,22 +86,40 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Constants.cs" />
     <Compile Include="DirectoriesPage.xaml.cs">
       <DependentUpon>DirectoriesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GetFilepathWindow.xaml.cs">
+      <DependentUpon>GetFilepathWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DirectoryUpdateWindow.xaml.cs">
+      <DependentUpon>DirectoryUpdateWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ListViewDataTypes.cs" />
     <Compile Include="ModsPage.xaml.cs">
       <DependentUpon>ModsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageBase.cs" />
     <Compile Include="SavesPage.xaml.cs">
       <DependentUpon>SavesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="VersionsPage.xaml.cs">
       <DependentUpon>VersionsPage.xaml</DependentUpon>
     </Compile>
     <Page Include="DirectoriesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GetFilepathWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DirectoryUpdateWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -171,6 +190,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

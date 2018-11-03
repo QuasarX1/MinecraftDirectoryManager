@@ -8,7 +8,91 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SavesPage" Background="White">
 
-    <Grid>
-        
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition/>
+                <RowDefinition Height="0.09*"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Saves" Grid.Row="0"/>
+
+            <ListView Name="StoredSavesListView" Grid.Row="1"></ListView>
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button Name="AddNewSaveButton" ToolTip="Import a save folder from an external directory." Content="Add New" Grid.Column="0" Click="AddNewSaveButton_Click"/>
+
+                <Button Name="MoveToDirectoryButton" Content="Move" ToolTip="Move a save into the selected directory." Grid.Column="1" Click="MoveToDirectoryButton_Click"/>
+
+                <Button Name="CopyToDirectoryButton" Content="Copy" ToolTip="Copy a save into the selected directory and change its folder name." Grid.Column="2" Click="CopyToDirectoryButton_Click"/>
+
+                <Button Name="DeleteStoredSaveButton" Content="Delete" ToolTip="Delete the saved copy of this save." Grid.Column="3" Click="DeleteStoredSaveButton_Click"/>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Directories" Grid.Row="0"/>
+
+                <ListView Name="DirectoriesListView" Grid.Row="1" SelectionChanged="DirectoriesListView_SelectionChanged">
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="true">
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                            <GridViewColumn Header="Path" DisplayMemberBinding="{Binding Path}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="0.2*"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Saves in Directory" Grid.Row="0"/>
+
+                <ListView Name="DirectorySavesListView" Grid.Row="1"/>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Button Name="MoveToSavesButton" Content="Move to Saves" ToolTip="Move the selected out of the directory." Grid.Column="1" Click="MoveToSavesButton_Click"/>
+                    
+                    <Button Name="CopyToSavesButton" Content="Copy to Saves" ToolTip="Move the selected save out of the directory and change its name." Grid.Column="2" Click="CopyToSavesButton_Click"/>
+
+                    <Button Name="DeleteDirectorySaveButton" Content="Delete" ToolTip="Delete the selected save from the directory." Grid.Column="3" Click="DeleteDirectorySaveButton_Click"/>
+                </Grid>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

@@ -24,11 +24,20 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         {
             InitializeComponent();
 
+            // Check data directory structure
+
             MainDisplayFrame.Content = new HomePage();
         }
 
         public void NavigateToPage(Type pageType)
         {
+            // Save any changes
+            if (MainDisplayFrame.Content is IChangesPage)
+            {
+                ((IChangesPage)MainDisplayFrame.Content).Save();
+            }
+            
+            // Load the new page
             MainDisplayFrame.Content = Activator.CreateInstance(pageType);
         }
 
@@ -71,6 +80,14 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         private void ModsMenuButton_Click(object sender, RoutedEventArgs e)
         {
             NavigateToPage(typeof(ModsPage));
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (MainDisplayFrame.Content is IChangesPage)
+            {
+                ((IChangesPage)MainDisplayFrame.Content).Save();
+            }
         }
     }
 }
