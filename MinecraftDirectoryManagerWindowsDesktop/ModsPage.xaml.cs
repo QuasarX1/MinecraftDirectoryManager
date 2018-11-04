@@ -13,16 +13,153 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using System.IO;
+
 namespace MinecraftDirectoryManagerWindowsDesktop
 {
     /// <summary>
     /// Interaction logic for ModsPage.xaml
     /// </summary>
-    public partial class ModsPage : Page
+    public partial class ModsPage : Page, IChangesPage
     {
+        public void Save()
+        {
+            if (CurrentPackFilepath != null)
+            {
+                ModPacksPage.SaveModPackMods(CurrentPackFilepath, ModPackMods);
+            }
+        }
+
+        public System.Collections.ObjectModel.ObservableCollection<UIListString> Mods;
+        public System.Collections.ObjectModel.ObservableCollection<UIListString> ModPackMods;
+        public System.Collections.ObjectModel.ObservableCollection<MCModPack> ModPacks;
+        public readonly string FolderPath = Constants.APPDATA + "Mods";//Mods\Modpacks(with files in packs index) + mod files
+        private string CurrentPackFilepath;
+
         public ModsPage()
         {
             InitializeComponent();
+
+            this.DataContext = this;
+
+
+            if (!Directory.Exists(FolderPath))
+            {
+                Directory.CreateDirectory(FolderPath);
+            }
+
+            Mods = new System.Collections.ObjectModel.ObservableCollection<UIListString>();
+
+            foreach (string save in Directory.GetFiles(FolderPath))
+            {
+                Mods.Add(new UIListString(System.IO.Path.GetFileName(save)));
+            }
+
+            StoredModsListView.ItemsSource = Mods;
+
+
+            if (!System.IO.File.Exists(System.IO.Path.Combine(FolderPath, "ModPacks", "ModPacks.txt")))
+            {
+                var file = System.IO.File.Create(System.IO.Path.Combine(FolderPath, "ModPacks", "ModPacks.txt"));
+                file.Close();
+            }
+
+            ModPacks = ModPacksPage.LoadModPacks(System.IO.Path.Combine(FolderPath, "ModPacks", "ModPacks.txt"));
+
+            ModPacksListView.ItemsSource = ModPacks;
+        }
+        
+
+
+        private void ModPacksListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Save the current modpack
+            Save();
+
+            if (ModPacksListView.SelectedIndex != -1)
+            {
+                CurrentPackFilepath = System.IO.Path.Combine(FolderPath, "ModPacks", ModPacks[ModPacksListView.SelectedIndex].Name + ".txt");
+                ModPackMods = ModPacksPage.LoadModPackMods(CurrentPackFilepath);
+
+                ModPackModsListView.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                CurrentPackFilepath = null;
+                ModPackModsListView.Visibility = Visibility.Hidden;
+            }
+
+            ModPackModsListView.ItemsSource = ModPackMods;
+        }
+
+        public bool AddMod(string path)
+        {
+            try
+            {
+                File.Copy(path, System.IO.Path.Combine(FolderPath, System.IO.Path.GetFileName(path)));
+
+                Mods.Add(new UIListString(System.IO.Path.GetFileName(path)));
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        private void AddNewModButton_Click(object sender, RoutedEventArgs e)
+        {
+            GetFilepathWindow dioulouge = new GetFilepathWindow();
+            dioulouge.Submit += AddMod;
+
+            dioulouge.Show();
+        }
+
+        private void AddToModPackButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Copy to list
+            if (StoredModsListView.SelectedIndex != -1 && ModPacksListView.SelectedIndex != -1)
+            {
+                if (!ModPackMods.Contains(Mods[StoredModsListView.SelectedIndex], new ModCompairer()))
+                {
+                    ModPackMods.Add(Mods[StoredModsListView.SelectedIndex]);
+                }
+            }
+        }
+
+        private void DeleteStoredModButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (StoredModsListView.SelectedIndex != -1)
+            {
+                //TODO: Check if used in mod pack
+                File.Delete(System.IO.Path.Combine(FolderPath, Mods[StoredModsListView.SelectedIndex].Text));
+                
+                Mods.RemoveAt(StoredModsListView.SelectedIndex);
+            }
+        }
+
+        private void RemoveFromModPackButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ModPackModsListView.SelectedIndex != -1)
+            {
+                ModPackMods.RemoveAt(ModPackModsListView.SelectedIndex);
+            }
+        }
+    }
+
+
+
+    public class ModCompairer : EqualityComparer<UIListString>
+    {
+        public override bool Equals(UIListString x, UIListString y)
+        {
+            return (x.Text == y.Text) ? true : false;
+        }
+
+        public override int GetHashCode(UIListString obj)
+        {
+            return obj.GetHashCode();
         }
     }
 }

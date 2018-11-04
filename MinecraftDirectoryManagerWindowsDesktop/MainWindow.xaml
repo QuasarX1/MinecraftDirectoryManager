@@ -20,6 +20,7 @@
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
+                <RowDefinition />
                 <RowDefinition Height="5*" />
             </Grid.RowDefinitions>
 
@@ -34,6 +35,8 @@
             <Button Name="VersionsMenuButton" Content="Versions" Grid.Row="4" Click="VersionsMenuButton_Click" />
 
             <Button Name="ModsMenuButton" Content="Mods" Grid.Row="5" Click="ModsMenuButton_Click" />
+
+            <Button Name="ModPacksMenuButton" Content="Mod Packs" Grid.Row="6" Click="ModPacksMenuButton_Click"/>
         </Grid>
 
         <Button Name="ShowMenuButton" Content="Show" Grid.Column="0" Visibility="Collapsed" Click="ShowMenuButton_Click" />

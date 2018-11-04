@@ -86,7 +86,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     
-                    <Button Name="MoveToSavesButton" Content="Move to Saves" ToolTip="Move the selected out of the directory." Grid.Column="1" Click="MoveToSavesButton_Click"/>
+                    <Button Name="MoveToSavesButton" Content="Move to Saves" ToolTip="Move the selected save out of the directory." Grid.Column="1" Click="MoveToSavesButton_Click"/>
                     
                     <Button Name="CopyToSavesButton" Content="Copy to Saves" ToolTip="Move the selected save out of the directory and change its name." Grid.Column="2" Click="CopyToSavesButton_Click"/>
 

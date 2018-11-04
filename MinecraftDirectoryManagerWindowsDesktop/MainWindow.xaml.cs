@@ -82,6 +82,11 @@ namespace MinecraftDirectoryManagerWindowsDesktop
             NavigateToPage(typeof(ModsPage));
         }
 
+        private void ModPacksMenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigateToPage(typeof(ModPacksPage));
+        }
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (MainDisplayFrame.Content is IChangesPage)

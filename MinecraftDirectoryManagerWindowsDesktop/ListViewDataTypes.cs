@@ -90,4 +90,46 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         }
 
     }
+
+    public class MCModPack : ChangeNotifierBase, INotifyPropertyChanged
+    {
+        public MCModPack(string name, string version)
+        {
+            ID = Guid.NewGuid();
+            this.name = name;
+            this.version = version;
+        }
+
+        public readonly Guid ID;
+
+        private string name;
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+
+            set
+            {
+                name = value;
+                NotifyPropertyChanged("Name");
+            }
+        }
+
+        private string version;
+        public string Version
+        {
+            get
+            {
+                return version;
+            }
+
+            set
+            {
+                version = value;
+                NotifyPropertyChanged("Path");
+            }
+        }
+    }
 }
