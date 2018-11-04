@@ -183,5 +183,22 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         {
             //Save();
         }
+
+        private void DirectoriesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DirectoriesListView.SelectedIndex != -1)
+            {
+                string path = Directories[DirectoriesListView.SelectedIndex].Path;
+                ValidCheckBox.IsChecked = ValidateDirectory(path);
+
+                ModdedCheckBox.IsChecked = ValidateDirectory(path, true);
+
+                DetailsGrid.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                DetailsGrid.Visibility = Visibility.Hidden;
+            }
+        }
     }
 }

@@ -21,14 +21,41 @@
                 <RowDefinition Height="0.2*"/>
             </Grid.RowDefinitions>
 
-            <ListView Name="DirectoriesListView" SelectionMode="Single" Margin="10" Grid.Row="0"><!--ItemsSource="{Binding Directories, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">-->
-                <ListView.View>
-                    <GridView AllowsColumnReorder="true">
-                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
-                        <GridViewColumn Header="Path" DisplayMemberBinding="{Binding Path}"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.4*"/>
+                </Grid.ColumnDefinitions>
+
+                <ListView Name="DirectoriesListView" SelectionMode="Single" Margin="10" Grid.Column="0" SelectionChanged="DirectoriesListView_SelectionChanged">
+                    <!--ItemsSource="{Binding Directories, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">-->
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="true">
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                            <GridViewColumn Header="Path" DisplayMemberBinding="{Binding Path}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <Grid Name="DetailsGrid" Grid.Column="1" Visibility="Hidden">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Content="Valid Directory:" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                    <CheckBox Name="ValidCheckBox" Grid.Row="0" Grid.Column="1" IsChecked="False" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="False"/>
+
+                    <Label Grid.Row="1" Grid.Column="0" Content="Modded Directory:" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                    <CheckBox Name="ModdedCheckBox" Grid.Row="1" Grid.Column="1" IsChecked="False" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="False"/>
+                </Grid>
+            </Grid>
 
             <Grid Grid.Row="1" Margin="10">
                 <Grid.ColumnDefinitions>

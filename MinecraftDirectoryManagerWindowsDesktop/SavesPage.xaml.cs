@@ -25,7 +25,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         public System.Collections.ObjectModel.ObservableCollection<UIListString> Saves;
         public System.Collections.ObjectModel.ObservableCollection<UIListString> DirectorySaves;
         public System.Collections.ObjectModel.ObservableCollection<MCDirectory> Directories;
-        public readonly string  FolderPath = Constants.APPDATA + "Versions";
+        public readonly string  FolderPath = Constants.APPDATA + "Saves";
 
         public SavesPage()
         {

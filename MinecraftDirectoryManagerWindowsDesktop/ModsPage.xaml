@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:MinecraftDirectoryManagerWindowsDesktop"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ModsPage">
+      Title="ModsPage" Background="White">
 
     <Grid>
         
