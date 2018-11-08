@@ -23,11 +23,10 @@ namespace MinecraftDirectoryManagerWindowsDesktop
     /// </summary>
     public partial class ModPacksPage : Page, IChangesPage
     {
-        //public readonly string FolderPath = System.IO.Path.Combine(Constants.APPDATA, "Mods", "ModPacks");
         public System.Collections.ObjectModel.ObservableCollection<MCModPack> ModPacks;
         public System.Collections.ObjectModel.ObservableCollection<PackInDirectory> DirectoryModPacks;
         public System.Collections.ObjectModel.ObservableCollection<MCDirectory> Directories;
-        public string CurrentDirectory =  null;
+        public MCDirectory CurrentDirectory =  null;
 
 
 
@@ -37,7 +36,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
 
             if (CurrentDirectory != null)
             {
-                SavePacksInDirectories(CurrentDirectory, DirectoryModPacks);
+                SavePacksInDirectories(CurrentDirectory.Name, DirectoryModPacks);
             }
         }
 
@@ -68,7 +67,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
 
 
 
-                CurrentDirectory = Directories[DirectoriesListView.SelectedIndex].Name;
+                CurrentDirectory = Directories[DirectoriesListView.SelectedIndex];
             }
             else
             {
@@ -87,6 +86,8 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         {
             if (!ModPacks.Contains(sender.ModPack, new ModPackCompairer()))
             {
+                File.Create(System.IO.Path.Combine(ModPacksFolder, sender.ModPack.Name + ".txt")).Close();
+
                 ModPacks.Add(sender.ModPack);
 
                 return true;
@@ -107,7 +108,18 @@ namespace MinecraftDirectoryManagerWindowsDesktop
 
         private void DeleteStoredModPackButton_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: check pack not in ANY directory and delete index file
+            if (StoredModPacksListView.SelectedIndex != -1)
+            {
+                if (!LoadPacksInDirectories().Contains(new PackInDirectory(ModPacks[StoredModPacksListView.SelectedIndex], null), new PackAccrossDirectoryCompairer()))
+                {
+                    if (File.Exists(System.IO.Path.Combine(ModPacksFolder, ModPacks[StoredModPacksListView.SelectedIndex].Name + ".txt")))
+                    {
+                        File.Delete(System.IO.Path.Combine(ModPacksFolder, ModPacks[StoredModPacksListView.SelectedIndex].Name + ".txt"));
+                    }
+
+                    ModPacks.RemoveAt(StoredModPacksListView.SelectedIndex);
+                }
+            }
         }
 
         private void LoadButton_Click(object sender, RoutedEventArgs e)
@@ -125,7 +137,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
                 }
 
 
-                DirectoryModPacks.Add(new PackInDirectory(ModPacks[StoredModPacksListView.SelectedIndex], CurrentDirectory));
+                DirectoryModPacks.Add(new PackInDirectory(ModPacks[StoredModPacksListView.SelectedIndex], CurrentDirectory.Name));
             }
         }
 
@@ -133,11 +145,26 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         {
             if (DirectoryModPacksListView.SelectedIndex != -1)
             {
-                //TODO: delete non-shared mods
+                IEnumerable<UIListString> removeMods = LoadModPackMods(System.IO.Path.Combine(ModPacksFolder, DirectoryModPacks[DirectoryModPacksListView.SelectedIndex] + ".txt" ));
+                
+                DirectoryModPacks.RemoveAt(DirectoryModPacksListView.SelectedIndex);
+
+                foreach (PackInDirectory pack in DirectoryModPacks)
+                {
+                    foreach (UIListString keepMod in LoadModPackMods(System.IO.Path.Combine(ModPacksFolder, pack.ModPack + ".txt")))
+                    {
+                        removeMods = from mod in removeMods where mod.Text != keepMod.Text select mod;
+                    }
+                }
 
 
-
-                DirectoryModPacks.RemoveAt(DirectoryModPacksListView.SelectedIndex);                
+                foreach (UIListString mod in removeMods)
+                {
+                    if (File.Exists(System.IO.Path.Combine(CurrentDirectory.Path, "mods", mod.Text)))
+                    {
+                        File.Delete(System.IO.Path.Combine(CurrentDirectory.Path, "mods", mod.Text));
+                    }
+                }
             }
         }
     }
@@ -152,6 +179,19 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         }
 
         public override int GetHashCode(MCModPack obj)
+        {
+            return obj.GetHashCode();
+        }
+    }
+
+    public class PackAccrossDirectoryCompairer : EqualityComparer<PackInDirectory>
+    {
+        public override bool Equals(PackInDirectory x, PackInDirectory y)
+        {
+            return (x.ModPack == y.ModPack) ? true : false;
+        }
+
+        public override int GetHashCode(PackInDirectory obj)
         {
             return obj.GetHashCode();
         }

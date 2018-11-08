@@ -88,7 +88,6 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         {
             return text;
         }
-
     }
 
     public class MCModPack : ChangeNotifierBase, INotifyPropertyChanged
@@ -179,6 +178,11 @@ namespace MinecraftDirectoryManagerWindowsDesktop
                 directory = value;
                 NotifyPropertyChanged("Directory");
             }
+        }
+
+        public override string ToString()
+        {
+            return modpack;
         }
     }
 }
