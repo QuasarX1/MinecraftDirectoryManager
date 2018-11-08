@@ -40,7 +40,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Button Name="AddNewModPackButton" ToolTip="Create a blank mod pack." Content="Add New" Grid.Column="0" Click="AddNewModPackButton_Click"/>
+                <Button Name="NewModPackButton" ToolTip="Create a blank mod pack." Content="New" Grid.Column="0" Click="NewModPackButton_Click"/>
 
                 <Button Name="DeleteStoredModPackButton" Content="Delete" ToolTip="Delete the mod pack listing (this won't delete the mods)." Grid.Column="1" Click="DeleteStoredModPackButton_Click"/>
 
@@ -81,7 +81,7 @@
 
                 <Label Content="Mod Pack in Directory" Grid.Row="0"/>
 
-                <ListView Name="DirectoryModPackListView" Grid.Row="1"/>
+                <ListView Name="DirectoryModPacksListView" Grid.Row="1"/>
 
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>

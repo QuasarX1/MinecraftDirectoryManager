@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using System.IO;
+using static MinecraftDirectoryManagerWindowsDesktop.BackEnd;
 
 namespace MinecraftDirectoryManagerWindowsDesktop
 {
@@ -26,14 +27,13 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         {
             if (CurrentPackFilepath != null)
             {
-                ModPacksPage.SaveModPackMods(CurrentPackFilepath, ModPackMods);
+                SaveModPackMods(CurrentPackFilepath, ModPackMods);
             }
         }
 
         public System.Collections.ObjectModel.ObservableCollection<UIListString> Mods;
         public System.Collections.ObjectModel.ObservableCollection<UIListString> ModPackMods;
         public System.Collections.ObjectModel.ObservableCollection<MCModPack> ModPacks;
-        public readonly string FolderPath = Constants.APPDATA + "Mods";//Mods\Modpacks(with files in packs index) + mod files
         private string CurrentPackFilepath;
 
         public ModsPage()
@@ -43,14 +43,14 @@ namespace MinecraftDirectoryManagerWindowsDesktop
             this.DataContext = this;
 
 
-            if (!Directory.Exists(FolderPath))
+            if (!Directory.Exists(ModsFolder))
             {
-                Directory.CreateDirectory(FolderPath);
+                Directory.CreateDirectory(ModsFolder);
             }
 
             Mods = new System.Collections.ObjectModel.ObservableCollection<UIListString>();
 
-            foreach (string save in Directory.GetFiles(FolderPath))
+            foreach (string save in Directory.GetFiles(ModsFolder))
             {
                 Mods.Add(new UIListString(System.IO.Path.GetFileName(save)));
             }
@@ -58,13 +58,13 @@ namespace MinecraftDirectoryManagerWindowsDesktop
             StoredModsListView.ItemsSource = Mods;
 
 
-            if (!System.IO.File.Exists(System.IO.Path.Combine(FolderPath, "ModPacks", "ModPacks.txt")))
+            if (!System.IO.File.Exists(ModPacksFile))
             {
-                var file = System.IO.File.Create(System.IO.Path.Combine(FolderPath, "ModPacks", "ModPacks.txt"));
+                var file = System.IO.File.Create(ModPacksFile);
                 file.Close();
             }
 
-            ModPacks = ModPacksPage.LoadModPacks(System.IO.Path.Combine(FolderPath, "ModPacks", "ModPacks.txt"));
+            ModPacks = LoadModPacks();
 
             ModPacksListView.ItemsSource = ModPacks;
         }
@@ -78,8 +78,8 @@ namespace MinecraftDirectoryManagerWindowsDesktop
 
             if (ModPacksListView.SelectedIndex != -1)
             {
-                CurrentPackFilepath = System.IO.Path.Combine(FolderPath, "ModPacks", ModPacks[ModPacksListView.SelectedIndex].Name + ".txt");
-                ModPackMods = ModPacksPage.LoadModPackMods(CurrentPackFilepath);
+                CurrentPackFilepath = System.IO.Path.Combine(ModPacksFolder, ModPacks[ModPacksListView.SelectedIndex].Name + ".txt");
+                ModPackMods = LoadModPackMods(CurrentPackFilepath);
 
                 ModPackModsListView.Visibility = Visibility.Visible;
             }
@@ -96,7 +96,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         {
             try
             {
-                File.Copy(path, System.IO.Path.Combine(FolderPath, System.IO.Path.GetFileName(path)));
+                File.Copy(path, System.IO.Path.Combine(ModsFolder, System.IO.Path.GetFileName(path)));
 
                 Mods.Add(new UIListString(System.IO.Path.GetFileName(path)));
 
@@ -133,7 +133,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
             if (StoredModsListView.SelectedIndex != -1)
             {
                 //TODO: Check if used in mod pack
-                File.Delete(System.IO.Path.Combine(FolderPath, Mods[StoredModsListView.SelectedIndex].Text));
+                File.Delete(System.IO.Path.Combine(ModsFolder, Mods[StoredModsListView.SelectedIndex].Text));
                 
                 Mods.RemoveAt(StoredModsListView.SelectedIndex);
             }

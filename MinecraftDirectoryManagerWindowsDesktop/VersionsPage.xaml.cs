@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using System.IO;
+using static MinecraftDirectoryManagerWindowsDesktop.BackEnd;
 
 namespace MinecraftDirectoryManagerWindowsDesktop
 {
@@ -25,7 +26,6 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         public System.Collections.ObjectModel.ObservableCollection<UIListString> Versions;
         public System.Collections.ObjectModel.ObservableCollection<UIListString> DirectoryVersions;
         public System.Collections.ObjectModel.ObservableCollection<MCDirectory> Directories;
-        public readonly string FolderPath = Constants.APPDATA + "Versions";
 
         public VersionsPage()
         {
@@ -34,14 +34,14 @@ namespace MinecraftDirectoryManagerWindowsDesktop
             this.DataContext = this;
 
 
-            if (!Directory.Exists(FolderPath))
+            if (!Directory.Exists(VersionsFolder))
             {
-                Directory.CreateDirectory(FolderPath);
+                Directory.CreateDirectory(VersionsFolder);
             }
 
             Versions = new System.Collections.ObjectModel.ObservableCollection<UIListString>();
 
-            foreach (string version in Directory.GetDirectories(FolderPath))
+            foreach (string version in Directory.GetDirectories(VersionsFolder))
             {
                 Versions.Add(new UIListString(System.IO.Path.GetFileName(version)));
             }
@@ -49,13 +49,13 @@ namespace MinecraftDirectoryManagerWindowsDesktop
             StoredVersionsListView.ItemsSource = Versions;
 
 
-            if (!System.IO.File.Exists(Constants.APPDATA + "Directories.txt"))
+            if (!System.IO.File.Exists(DirectoriesFile))
             {
-                var file = System.IO.File.Create(Constants.APPDATA + "Directories.txt");
+                var file = System.IO.File.Create(DirectoriesFile);
                 file.Close();
             }
 
-            Directories = DirectoriesPage.LoadDirectories(Constants.APPDATA + "Directories.txt");
+            Directories = LoadDirectories();
 
             DirectoriesListView.ItemsSource = Directories;
         }
@@ -64,7 +64,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         {
             DirectoryVersions = new System.Collections.ObjectModel.ObservableCollection<UIListString>();
 
-            if (DirectoriesPage.ValidateDirectory(Directories[DirectoriesListView.SelectedIndex].Path) == true)
+            if (ValidateDirectory(Directories[DirectoriesListView.SelectedIndex].Path) == true)
             {
                 foreach (string version in Directory.GetDirectories(System.IO.Path.Combine(Directories[DirectoriesListView.SelectedIndex].Path, "versions")))
                 {
@@ -114,7 +114,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         {
             try
             {
-                CopyFilesRecursively(path, System.IO.Path.Combine(FolderPath, System.IO.Path.GetFileName(path)));
+                CopyFilesRecursively(path, System.IO.Path.Combine(VersionsFolder, System.IO.Path.GetFileName(path)));
 
                 Versions.Add(new UIListString(System.IO.Path.GetFileName(path)));
 
@@ -136,11 +136,11 @@ namespace MinecraftDirectoryManagerWindowsDesktop
 
         private void MoveToDirectoryButton_Click(object sender, RoutedEventArgs e)
         {
-            if (StoredVersionsListView.SelectedIndex != -1 && DirectoriesListView.SelectedIndex != -1 && DirectoriesPage.ValidateDirectory(Directories[DirectoriesListView.SelectedIndex].Path))
+            if (StoredVersionsListView.SelectedIndex != -1 && DirectoriesListView.SelectedIndex != -1 && ValidateDirectory(Directories[DirectoriesListView.SelectedIndex].Path))
             {
                 if (!Directory.Exists(System.IO.Path.Combine(Directories[DirectoriesListView.SelectedIndex].Path, "versions", Versions[StoredVersionsListView.SelectedIndex].Text)))
                 {
-                    Directory.Move(System.IO.Path.Combine(FolderPath, Versions[StoredVersionsListView.SelectedIndex].Text), System.IO.Path.Combine(Directories[DirectoriesListView.SelectedIndex].Path, "versions", Versions[StoredVersionsListView.SelectedIndex].Text));
+                    Directory.Move(System.IO.Path.Combine(VersionsFolder, Versions[StoredVersionsListView.SelectedIndex].Text), System.IO.Path.Combine(Directories[DirectoriesListView.SelectedIndex].Path, "versions", Versions[StoredVersionsListView.SelectedIndex].Text));
                     DirectoryVersions.Add(Versions[StoredVersionsListView.SelectedIndex]);
                     Versions.RemoveAt(StoredVersionsListView.SelectedIndex);
                 }
@@ -149,11 +149,11 @@ namespace MinecraftDirectoryManagerWindowsDesktop
 
         private void CopyToDirectoryButton_Click(object sender, RoutedEventArgs e)
         {
-            if (StoredVersionsListView.SelectedIndex != -1 && DirectoriesListView.SelectedIndex != -1 && DirectoriesPage.ValidateDirectory(Directories[DirectoriesListView.SelectedIndex].Path))
+            if (StoredVersionsListView.SelectedIndex != -1 && DirectoriesListView.SelectedIndex != -1 && ValidateDirectory(Directories[DirectoriesListView.SelectedIndex].Path))
             {
                 if (!Directory.Exists(System.IO.Path.Combine(Directories[DirectoriesListView.SelectedIndex].Path, "versions", Versions[StoredVersionsListView.SelectedIndex].Text)))
                 {
-                    CopyFilesRecursively(System.IO.Path.Combine(FolderPath, Versions[StoredVersionsListView.SelectedIndex].Text), System.IO.Path.Combine(Directories[DirectoriesListView.SelectedIndex].Path, "versions", Versions[StoredVersionsListView.SelectedIndex].Text));
+                    CopyFilesRecursively(System.IO.Path.Combine(VersionsFolder, Versions[StoredVersionsListView.SelectedIndex].Text), System.IO.Path.Combine(Directories[DirectoriesListView.SelectedIndex].Path, "versions", Versions[StoredVersionsListView.SelectedIndex].Text));
                     DirectoryVersions.Add(Versions[StoredVersionsListView.SelectedIndex]);
                 }
             }
@@ -163,18 +163,18 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         {
             if (StoredVersionsListView.SelectedIndex != -1)
             {
-                Directory.Delete(System.IO.Path.Combine(FolderPath, Versions[StoredVersionsListView.SelectedIndex].Text), true);
+                Directory.Delete(System.IO.Path.Combine(VersionsFolder, Versions[StoredVersionsListView.SelectedIndex].Text), true);
                 Versions.RemoveAt(StoredVersionsListView.SelectedIndex);
             }
         }
 
         private void MoveToVersionsButton_Click(object sender, RoutedEventArgs e)
         {
-            if (DirectoryVersionsListView.SelectedIndex != -1 && DirectoriesListView.SelectedIndex != -1 && DirectoriesPage.ValidateDirectory(Directories[DirectoriesListView.SelectedIndex].Path))
+            if (DirectoryVersionsListView.SelectedIndex != -1 && DirectoriesListView.SelectedIndex != -1 && ValidateDirectory(Directories[DirectoriesListView.SelectedIndex].Path))
             {
-                if (!Directory.Exists(System.IO.Path.Combine(FolderPath, DirectoryVersions[DirectoryVersionsListView.SelectedIndex].Text)))
+                if (!Directory.Exists(System.IO.Path.Combine(VersionsFolder, DirectoryVersions[DirectoryVersionsListView.SelectedIndex].Text)))
                 {
-                    Directory.Move(System.IO.Path.Combine(Directories[DirectoriesListView.SelectedIndex].Path, "versions", DirectoryVersions[DirectoryVersionsListView.SelectedIndex].Text), System.IO.Path.Combine(FolderPath, DirectoryVersions[DirectoryVersionsListView.SelectedIndex].Text));
+                    Directory.Move(System.IO.Path.Combine(Directories[DirectoriesListView.SelectedIndex].Path, "versions", DirectoryVersions[DirectoryVersionsListView.SelectedIndex].Text), System.IO.Path.Combine(VersionsFolder, DirectoryVersions[DirectoryVersionsListView.SelectedIndex].Text));
                     Versions.Add(DirectoryVersions[DirectoryVersionsListView.SelectedIndex]);
                     DirectoryVersions.RemoveAt(DirectoryVersionsListView.SelectedIndex);
                 }
@@ -183,11 +183,11 @@ namespace MinecraftDirectoryManagerWindowsDesktop
 
         private void CopyToVersionsButton_Click(object sender, RoutedEventArgs e)
         {
-            if (DirectoryVersionsListView.SelectedIndex != -1 && DirectoriesListView.SelectedIndex != -1 && DirectoriesPage.ValidateDirectory(Directories[DirectoriesListView.SelectedIndex].Path))
+            if (DirectoryVersionsListView.SelectedIndex != -1 && DirectoriesListView.SelectedIndex != -1 && ValidateDirectory(Directories[DirectoriesListView.SelectedIndex].Path))
             {
-                if (!Directory.Exists(System.IO.Path.Combine(FolderPath, DirectoryVersions[DirectoryVersionsListView.SelectedIndex].Text)))
+                if (!Directory.Exists(System.IO.Path.Combine(VersionsFolder, DirectoryVersions[DirectoryVersionsListView.SelectedIndex].Text)))
                 {
-                    CopyFilesRecursively(System.IO.Path.Combine(Directories[DirectoriesListView.SelectedIndex].Path, "versions", DirectoryVersions[DirectoryVersionsListView.SelectedIndex].Text), System.IO.Path.Combine(FolderPath, DirectoryVersions[DirectoryVersionsListView.SelectedIndex].Text));
+                    CopyFilesRecursively(System.IO.Path.Combine(Directories[DirectoriesListView.SelectedIndex].Path, "versions", DirectoryVersions[DirectoryVersionsListView.SelectedIndex].Text), System.IO.Path.Combine(VersionsFolder, DirectoryVersions[DirectoryVersionsListView.SelectedIndex].Text));
                     Versions.Add(DirectoryVersions[DirectoryVersionsListView.SelectedIndex]);
                 }
             }
@@ -195,7 +195,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
 
         private void DeleteDirectoryVersionButton_Click(object sender, RoutedEventArgs e)
         {
-            if (DirectoryVersionsListView.SelectedIndex != -1 && DirectoriesListView.SelectedIndex != -1 && DirectoriesPage.ValidateDirectory(Directories[DirectoriesListView.SelectedIndex].Path))
+            if (DirectoryVersionsListView.SelectedIndex != -1 && DirectoriesListView.SelectedIndex != -1 && ValidateDirectory(Directories[DirectoriesListView.SelectedIndex].Path))
             {
                 Directory.Delete(System.IO.Path.Combine(Directories[DirectoriesListView.SelectedIndex].Path, "versions", DirectoryVersions[DirectoryVersionsListView.SelectedIndex].Text), true);
                 DirectoryVersions.RemoveAt(DirectoryVersionsListView.SelectedIndex);

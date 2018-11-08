@@ -128,7 +128,56 @@ namespace MinecraftDirectoryManagerWindowsDesktop
             set
             {
                 version = value;
-                NotifyPropertyChanged("Path");
+                NotifyPropertyChanged("Version");
+            }
+        }
+    }
+
+    public class PackInDirectory : ChangeNotifierBase, INotifyPropertyChanged
+    {
+        public PackInDirectory(string modpack, string directory)
+        {
+            ID = Guid.NewGuid();
+            this.modpack = modpack;
+            this.directory = directory;
+        }
+
+        public PackInDirectory(MCModPack modpack, string directory)
+        {
+            ID = Guid.NewGuid();
+            this.modpack = modpack.Name;
+            this.directory = directory;
+        }
+
+        public readonly Guid ID;
+
+        private string modpack;
+        public string ModPack
+        {
+            get
+            {
+                return modpack;
+            }
+
+            set
+            {
+                modpack = value;
+                NotifyPropertyChanged("ModPack");
+            }
+        }
+
+        private string directory;
+        public string Directory
+        {
+            get
+            {
+                return directory;
+            }
+
+            set
+            {
+                directory = value;
+                NotifyPropertyChanged("Directory");
             }
         }
     }

@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using static MinecraftDirectoryManagerWindowsDesktop.BackEnd;
+
 namespace MinecraftDirectoryManagerWindowsDesktop
 {
     /// <summary>
@@ -37,7 +39,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         {
             if (NameTextBox.Text != "" && PathTextBox.Text != "")
             {
-                if (System.IO.Directory.Exists(PathTextBox.Text) && DirectoriesPage.ValidateDirectory(PathTextBox.Text) == true)
+                if (System.IO.Directory.Exists(PathTextBox.Text) && ValidateDirectory(PathTextBox.Text) == true)
                 {
                     Directory.Name = NameTextBox.Text;
                     Directory.Path = PathTextBox.Text;

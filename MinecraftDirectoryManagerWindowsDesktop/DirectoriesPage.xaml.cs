@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using static MinecraftDirectoryManagerWindowsDesktop.BackEnd;
+
 
 namespace MinecraftDirectoryManagerWindowsDesktop
 {
@@ -22,28 +24,9 @@ namespace MinecraftDirectoryManagerWindowsDesktop
     public partial class DirectoriesPage : Page, IChangesPage
     {
         public System.Collections.ObjectModel.ObservableCollection<MCDirectory> Directories;
-        public string testString = "Hello World";
 
-        public static System.Collections.ObjectModel.ObservableCollection<MCDirectory> LoadDirectories(string filepath)
-        {
-            System.Collections.ObjectModel.ObservableCollection<MCDirectory> directories = new System.Collections.ObjectModel.ObservableCollection<MCDirectory>();
-
-            var data = System.IO.File.OpenText(filepath);
-
-            // Create and populate the Directories list
-            string line = data.ReadLine();
-            while (line != null)
-            {
-                string[] values = line.Split(new char[] { ';' });
-                directories.Add(new MCDirectory(values[0], values[1]));
-
-                line = data.ReadLine();
-            }
-            data.Close();
-
-            return directories;
-        }
         
+
         public DirectoriesPage()
         {
             InitializeComponent();
@@ -51,13 +34,13 @@ namespace MinecraftDirectoryManagerWindowsDesktop
             this.DataContext = this;
 
 
-            if (!System.IO.Directory.Exists(Constants.APPDATA))
+            if (!System.IO.Directory.Exists(RootDirectory))
             {
-                System.IO.Directory.CreateDirectory(Constants.APPDATA);
+                System.IO.Directory.CreateDirectory(RootDirectory);
             }
-            if (!System.IO.File.Exists(Constants.APPDATA + "Directories.txt"))
+            if (!System.IO.File.Exists(DirectoriesFile))
             {
-                var file = System.IO.File.Create(Constants.APPDATA + "Directories.txt");
+                var file = System.IO.File.Create(DirectoriesFile);
                 file.Close();
             }
 
@@ -75,7 +58,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
             //}
             //data.Close();
 
-            Directories = LoadDirectories(Constants.APPDATA + "Directories.txt");
+            Directories = LoadDirectories();
 
 
             DirectoriesListView.ItemsSource = Directories;
@@ -127,13 +110,13 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         public void Save()
         {
             // Save all changes
-            if (!System.IO.Directory.Exists(Constants.APPDATA))
+            if (!System.IO.Directory.Exists(RootDirectory))
             {
-                System.IO.Directory.CreateDirectory(Constants.APPDATA);
+                System.IO.Directory.CreateDirectory(RootDirectory);
             }
-            if (!System.IO.File.Exists(Constants.APPDATA + "Directories.txt"))
+            if (!System.IO.File.Exists(DirectoriesFile))
             {
-                var file = System.IO.File.Create(Constants.APPDATA + "Directories.txt");
+                var file = System.IO.File.Create(DirectoriesFile);
                 file.Close();
             }
 
@@ -143,31 +126,10 @@ namespace MinecraftDirectoryManagerWindowsDesktop
                 lines[i] = Directories[i].Name + ";" + Directories[i].Path;
             }
 
-            System.IO.File.WriteAllLines(Constants.APPDATA + "Directories.txt", lines);
+            System.IO.File.WriteAllLines(DirectoriesFile, lines);
         }
 
-        /// <summary>
-        /// Checks that a directory is a valid minecraft directory.
-        /// </summary>
-        /// <returns></returns>
-        public static bool ValidateDirectory(string directoryPath, bool modded = false)
-        {
-            int missingItems = 0;
-            foreach (string item in new string[] { "saves", "versions", (modded == true)? "mods" : "" })
-            {
-                if (System.IO.Directory.GetDirectories(directoryPath).Contains(System.IO.Path.Combine(directoryPath, item)) || item == "")
-                {
-                    continue;
-                }
-                else
-                {
-                    missingItems++;
-                }
-            }
-
-            return (missingItems == 0) ? true : false;
-           
-        }
+        
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {

@@ -86,7 +86,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Constants.cs" />
+    <Compile Include="BackEnd.cs" />
     <Compile Include="DirectoriesPage.xaml.cs">
       <DependentUpon>DirectoriesPage.xaml</DependentUpon>
     </Compile>
@@ -105,6 +105,9 @@
     </Compile>
     <Compile Include="ModsPage.xaml.cs">
       <DependentUpon>ModsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewModPackWindow.xaml.cs">
+      <DependentUpon>NewModPackWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageBase.cs" />
     <Compile Include="SavesPage.xaml.cs">
@@ -147,6 +150,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ModsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewModPackWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
