@@ -84,7 +84,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
 
         public bool CreateModPack(NewModPackWindow sender)
         {
-            if (!ModPacks.Contains(sender.ModPack, new ModPackCompairer()))
+            if (!ModPacks.Contains(sender.ModPack, new ModPackCompairer()) && (from character in sender.ModPack.Name where System.IO.Path.GetInvalidFileNameChars().Contains(character) select character).Count() == 0)
             {
                 File.Create(System.IO.Path.Combine(ModPacksFolder, sender.ModPack.Name + ".txt")).Close();
 
