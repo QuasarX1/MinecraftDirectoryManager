@@ -118,8 +118,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
             }
         }
 
-
-
+        
 
         public static void CopyFilesRecursively(string source, string target, bool initialCall = true)
         {
@@ -150,7 +149,18 @@ namespace MinecraftDirectoryManagerWindowsDesktop
                 file.CopyTo(System.IO.Path.Combine(target.FullName, file.Name));
         }
 
-        
+
+
+        public static string GetPublishedVersion()
+        {
+            if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
+            {
+                return System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
+            }
+            return "Dev Build";
+        }
+
+
 
         /// <summary>
         /// Checks that a directory is a valid minecraft directory.

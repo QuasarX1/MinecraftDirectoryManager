@@ -23,6 +23,8 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         public HomePage()
         {
             InitializeComponent();
+
+            VersionLabel.Content += BackEnd.GetPublishedVersion();
         }
     }
 }

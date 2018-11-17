@@ -11,7 +11,7 @@
     <Grid>
         <Image />
         <Button Content="View Source on GitHub" HorizontalAlignment="Left" Width="139" Margin="10,0,0,10" Height="26" VerticalAlignment="Bottom" />
-        <Label Content="Version: Dev 0.1" Margin="0,0,10,10" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="98"/>
+        <Label Name="VersionLabel" Content="Version: " Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" />
 
     </Grid>
 </Page>
