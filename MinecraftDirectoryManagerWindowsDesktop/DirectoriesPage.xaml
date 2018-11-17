@@ -46,6 +46,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
+                        <RowDefinition/>
                         <RowDefinition Height="2*"/>
                     </Grid.RowDefinitions>
 
@@ -54,6 +55,9 @@
 
                     <Label Grid.Row="1" Grid.Column="0" Content="Modded Directory:" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
                     <CheckBox Name="ModdedCheckBox" Grid.Row="1" Grid.Column="1" IsChecked="False" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="False"/>
+
+                    <Label Grid.Row="2" Grid.Column="0" Content="Valid Server:" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                    <CheckBox Name="ServerCheckBox" Grid.Row="2" Grid.Column="1" IsChecked="False" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="False"/>
                 </Grid>
             </Grid>
 

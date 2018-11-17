@@ -59,7 +59,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         {
             Save();
 
-            if (ValidateDirectory(Directories[DirectoriesListView.SelectedIndex].Path, true) == true)
+            if (ValidateDirectory(Directories[DirectoriesListView.SelectedIndex].Path, true) || ValidateDirectory(Directories[DirectoriesListView.SelectedIndex].Path, true, true))
             {
                 DirectoryModPacks = LoadPacksInDirectories(Directories[DirectoriesListView.SelectedIndex].Name);
 
@@ -124,7 +124,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
 
         private void LoadButton_Click(object sender, RoutedEventArgs e)
         {
-            if (StoredModPacksListView.SelectedIndex != -1 && DirectoriesListView.SelectedIndex != -1 && ValidateDirectory(Directories[DirectoriesListView.SelectedIndex].Path, true))
+            if (StoredModPacksListView.SelectedIndex != -1 && DirectoriesListView.SelectedIndex != -1 && (ValidateDirectory(Directories[DirectoriesListView.SelectedIndex].Path, true) || ValidateDirectory(Directories[DirectoriesListView.SelectedIndex].Path, true, true)))
             {
                 System.Collections.ObjectModel.ObservableCollection<UIListString> moveMods = LoadModPackMods(System.IO.Path.Combine(ModPacksFolder, ModPacks[StoredModPacksListView.SelectedIndex].Name + ".txt"));
 

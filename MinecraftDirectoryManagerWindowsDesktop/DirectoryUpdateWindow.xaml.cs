@@ -39,7 +39,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         {
             if (NameTextBox.Text != "" && PathTextBox.Text != "")
             {
-                if (System.IO.Directory.Exists(PathTextBox.Text) && ValidateDirectory(PathTextBox.Text) == true)
+                if (System.IO.Directory.Exists(PathTextBox.Text) && (ValidateDirectory(PathTextBox.Text) || ValidateDirectory(PathTextBox.Text, false, true)))
                 {
                     Directory.Name = NameTextBox.Text;
                     Directory.Path = PathTextBox.Text;

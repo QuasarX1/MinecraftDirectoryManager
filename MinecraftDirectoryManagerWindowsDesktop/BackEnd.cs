@@ -158,18 +158,36 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         /// <param name="directoryPath">The filepath to the minecraft directory.</param>
         /// <param name="modded">Require the directory to be a valid modded directory.</param>
         /// <returns>Boolean indicating whether or not the directory provided is valid.</returns>
-        public static bool ValidateDirectory(string directoryPath, bool modded = false)
+        public static bool ValidateDirectory(string directoryPath, bool modded = false, bool server = false)
         {
             int missingItems = 0;
-            foreach (string item in new string[] { "saves", "versions", (modded == true) ? "mods" : "" })
+
+            if (!server)
             {
-                if (Directory.GetDirectories(directoryPath).Contains(System.IO.Path.Combine(directoryPath, item)) || item == "")
+                foreach (string item in new string[] { "saves", "versions", (modded == true) ? "mods" : "" })
                 {
-                    continue;
+                    if (Directory.GetDirectories(directoryPath).Contains(System.IO.Path.Combine(directoryPath, item)) || item == "")
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        missingItems++;
+                    }
                 }
-                else
+            }
+            else
+            {
+                foreach (string item in new string[] { "world", (modded == true) ? "mods" : "" })
                 {
-                    missingItems++;
+                    if (Directory.GetDirectories(directoryPath).Contains(System.IO.Path.Combine(directoryPath, item)) || item == "")
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        missingItems++;
+                    }
                 }
             }
 

@@ -68,7 +68,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         {
             if (NewNameTextBox.Text != "" && NewPathTextBox.Text != "")
             {
-                if (System.IO.Directory.Exists(NewPathTextBox.Text) && ValidateDirectory(NewPathTextBox.Text) == true)
+                if (System.IO.Directory.Exists(NewPathTextBox.Text) && (ValidateDirectory(NewPathTextBox.Text) || ValidateDirectory(NewPathTextBox.Text, false, true)))
                 {
                     Directories.Add(new MCDirectory(NewNameTextBox.Text, NewPathTextBox.Text));
 
@@ -153,7 +153,9 @@ namespace MinecraftDirectoryManagerWindowsDesktop
                 string path = Directories[DirectoriesListView.SelectedIndex].Path;
                 ValidCheckBox.IsChecked = ValidateDirectory(path);
 
-                ModdedCheckBox.IsChecked = ValidateDirectory(path, true);
+                ModdedCheckBox.IsChecked = ValidateDirectory(path, true) || ValidateDirectory(path, true, true);
+
+                ServerCheckBox.IsChecked = ValidateDirectory(path, false, true);
 
                 DetailsGrid.Visibility = Visibility.Visible;
             }
