@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 
 using System.IO;
 using System.Collections.ObjectModel;
+using System.Deployment.Application;
 
 namespace MinecraftDirectoryManagerWindowsDesktop
 {
@@ -155,7 +156,8 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         {
             if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
             {
-                return System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
+                Version version = ApplicationDeployment.CurrentDeployment.CurrentVersion;
+                return version.Major.ToString() + "." + version.Minor.ToString() + "." + version.Build.ToString();
             }
             return "Dev Build";
         }
