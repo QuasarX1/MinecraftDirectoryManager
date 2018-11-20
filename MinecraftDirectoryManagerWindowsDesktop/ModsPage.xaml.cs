@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using System.IO;
+using Microsoft.Win32;
 using static MinecraftDirectoryManagerWindowsDesktop.BackEnd;
 
 namespace MinecraftDirectoryManagerWindowsDesktop
@@ -108,12 +109,26 @@ namespace MinecraftDirectoryManagerWindowsDesktop
             }
         }
 
+        //private void AddNewModButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    GetFilepathWindow dioulouge = new GetFilepathWindow();
+        //    dioulouge.Submit += AddMod;
+
+        //    dioulouge.Show();
+        //}
+
         private void AddNewModButton_Click(object sender, RoutedEventArgs e)
         {
-            GetFilepathWindow dioulouge = new GetFilepathWindow();
-            dioulouge.Submit += AddMod;
-
-            dioulouge.Show();
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = true;
+            openFileDialog.Title = "Select Mods";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                foreach (string path in openFileDialog.FileNames)
+                {
+                    AddMod(path);
+                }
+            }
         }
 
         private void AddToModPackButton_Click(object sender, RoutedEventArgs e)
