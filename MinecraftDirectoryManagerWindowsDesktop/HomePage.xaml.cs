@@ -26,5 +26,22 @@ namespace MinecraftDirectoryManagerWindowsDesktop
 
             VersionLabel.Content += BackEnd.GetPublishedVersion();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs args)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("https://github.com/QuasarX1/MinecraftDirectoryManager");
+            }
+            catch (System.ComponentModel.Win32Exception e)
+            {
+                if (e.ErrorCode == -2147467259)
+                    MessageBox.Show(e.Message);
+            }
+            catch (System.Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
     }
 }
