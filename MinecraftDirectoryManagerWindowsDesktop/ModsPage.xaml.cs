@@ -99,7 +99,10 @@ namespace MinecraftDirectoryManagerWindowsDesktop
             {
                 File.Copy(path, System.IO.Path.Combine(ModsFolder, System.IO.Path.GetFileName(path)));
 
-                Mods.Add(new UIListString(System.IO.Path.GetFileName(path)));
+                foreach (string subPath in path.Split(';'))
+                {
+                    Mods.Add(new UIListString(System.IO.Path.GetFileName(subPath)));
+                }
 
                 return true;
             }
@@ -109,27 +112,31 @@ namespace MinecraftDirectoryManagerWindowsDesktop
             }
         }
 
-        //private void AddNewModButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    GetFilepathWindow dioulouge = new GetFilepathWindow();
-        //    dioulouge.Submit += AddMod;
-
-        //    dioulouge.Show();
-        //}
-
         private void AddNewModButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Multiselect = true;
             openFileDialog.Title = "Select Mods";
-            if (openFileDialog.ShowDialog() == true)
-            {
-                foreach (string path in openFileDialog.FileNames)
-                {
-                    AddMod(path);
-                }
-            }
+
+            GetFilepathWindow dioulouge = new GetFilepathWindow("", false, true, openFileDialog);
+            dioulouge.Submit += AddMod;
+
+            dioulouge.Show();
         }
+
+        //private void AddNewModButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    OpenFileDialog openFileDialog = new OpenFileDialog();
+        //    openFileDialog.Multiselect = true;
+        //    openFileDialog.Title = "Select Mods";
+        //    if (openFileDialog.ShowDialog() == true)
+        //    {
+        //        foreach (string path in openFileDialog.FileNames)
+        //        {
+        //            AddMod(path);
+        //        }
+        //    }
+        //}
 
         private void AddToModPackButton_Click(object sender, RoutedEventArgs e)
         {

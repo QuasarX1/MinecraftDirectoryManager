@@ -15,13 +15,16 @@ using System.Windows.Shapes;
 
 using System.IO;
 using System.Collections.ObjectModel;
+using System.Deployment;
 using System.Deployment.Application;
 
 namespace MinecraftDirectoryManagerWindowsDesktop
 {
     static class BackEnd
     {
-    //- Atributes
+        //- Atributes
+        public static ExecutionModes Deployed;
+        
         /// <summary>
         /// Filepath for the application's data storage root directory.
         /// </summary>
@@ -154,12 +157,41 @@ namespace MinecraftDirectoryManagerWindowsDesktop
 
         public static string GetPublishedVersion()
         {
-            if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
+            string result = "";
+            switch (Deployed)
             {
-                Version version = ApplicationDeployment.CurrentDeployment.CurrentVersion;
-                return version.Major.ToString() + "." + version.Minor.ToString() + "." + version.Build.ToString();
+                case ExecutionModes.Debug:
+                    if (File.Exists(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "MinecraftDirectoryManagerWindowsDesktop.application")))
+                    {
+                        System.Data.DataSet ds = new System.Data.DataSet();
+                        ds.ReadXml(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "MinecraftDirectoryManagerWindowsDesktop.application"));
+                        System.Data.DataTable dt = new System.Data.DataTable();
+                        if (ds.Tables.Count > 1)
+                        {
+                            dt = ds.Tables[1];
+                            result = "Dev Build - " + dt.Rows[0]["version"].ToString();
+                        }
+                    }
+                    else
+                    {
+                        result = "Debug";
+                    }
+                    break;
+
+                case ExecutionModes.Portable:
+                    result = "Portable";
+                    break;
+
+                case ExecutionModes.Deployed:
+                    Version version = ApplicationDeployment.CurrentDeployment.CurrentVersion;
+                    result = version.Major.ToString() + "." + version.Minor.ToString() + "." + version.Build.ToString();
+                    break;
+
+                default:
+                    throw new Exception();
             }
-            return "Dev Build";
+
+            return result;
         }
 
 
@@ -206,7 +238,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
             return (missingItems == 0) ? true : false;
 
         }
-        //TODO: add support for servers. Enum for types vanilla/modded/server/modded server? add tests?
+        //TODO: Enum for types vanilla/modded/server/modded server? add tests?
 
 
 
@@ -422,5 +454,12 @@ namespace MinecraftDirectoryManagerWindowsDesktop
 
             System.IO.File.WriteAllLines(filepath, lines);
         }
+    }
+
+    public enum ExecutionModes
+    {
+        Debug = 1,
+        Portable = 2,
+        Deployed = 3
     }
 }

@@ -24,7 +24,21 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         {
             InitializeComponent();
 
+            if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
+            {
+                BackEnd.Deployed = ExecutionModes.Deployed;
+            }
+            else if (System.Diagnostics.Debugger.IsAttached)
+            {
+                BackEnd.Deployed = ExecutionModes.Debug;
+            }
+            else
+            {
+                BackEnd.Deployed = ExecutionModes.Portable;
+            }
+
             // Check data directory structure
+            BackEnd.CreateFileStructure();
 
             MainDisplayFrame.Content = new HomePage();
         }
