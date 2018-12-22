@@ -204,39 +204,45 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         /// <returns>Boolean indicating whether or not the directory provided is valid.</returns>
         public static bool ValidateDirectory(string directoryPath, bool modded = false, bool server = false)
         {
-            int missingItems = 0;
-
-            if (!server)
+            if (Directory.Exists(directoryPath))
             {
-                foreach (string item in new string[] { "saves", "versions", (modded == true) ? "mods" : "" })
+                int missingItems = 0;
+
+                if (!server)
                 {
-                    if (Directory.GetDirectories(directoryPath).Contains(System.IO.Path.Combine(directoryPath, item)) || item == "")
+                    foreach (string item in new string[] { "saves", "versions", (modded == true) ? "mods" : "" })
                     {
-                        continue;
-                    }
-                    else
-                    {
-                        missingItems++;
+                        if (Directory.GetDirectories(directoryPath).Contains(System.IO.Path.Combine(directoryPath, item)) || item == "")
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            missingItems++;
+                        }
                     }
                 }
+                else
+                {
+                    foreach (string item in new string[] { "world", (modded == true) ? "mods" : "" })
+                    {
+                        if (Directory.GetDirectories(directoryPath).Contains(System.IO.Path.Combine(directoryPath, item)) || item == "")
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            missingItems++;
+                        }
+                    }
+                }
+
+                return (missingItems == 0) ? true : false;
             }
             else
             {
-                foreach (string item in new string[] { "world", (modded == true) ? "mods" : "" })
-                {
-                    if (Directory.GetDirectories(directoryPath).Contains(System.IO.Path.Combine(directoryPath, item)) || item == "")
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        missingItems++;
-                    }
-                }
+                return false;
             }
-
-            return (missingItems == 0) ? true : false;
-
         }
         //TODO: Enum for types vanilla/modded/server/modded server? add tests?
 

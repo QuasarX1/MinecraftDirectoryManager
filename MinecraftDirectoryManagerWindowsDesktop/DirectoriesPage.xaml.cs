@@ -151,6 +151,8 @@ namespace MinecraftDirectoryManagerWindowsDesktop
             if (DirectoriesListView.SelectedIndex != -1)
             {
                 string path = Directories[DirectoriesListView.SelectedIndex].Path;
+                ValidPathCheckBox.IsChecked = System.IO.Directory.Exists(path);
+
                 ValidCheckBox.IsChecked = ValidateDirectory(path);
 
                 ModdedCheckBox.IsChecked = ValidateDirectory(path, true) || ValidateDirectory(path, true, true);
