@@ -59,7 +59,7 @@
                     <ListView.View>
                         <GridView AllowsColumnReorder="true">
                             <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
-                            <GridViewColumn Header="Path" DisplayMemberBinding="{Binding Version}"/>
+                            <GridViewColumn Header="Version" DisplayMemberBinding="{Binding Version}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
