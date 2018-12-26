@@ -328,11 +328,11 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         /// </summary>
         /// <param name="filepath">The filepath of the mod pack index file.</param>
         /// <returns>A collection of UIListString objects representing the mods.</returns>
-        public static ObservableCollection<UIListString> LoadModPackMods(string filepath)
+        public static ObservableCollection<ModFile> LoadModPackMods(string filepath)
         {
             CreateFileStructure();
 
-            ObservableCollection<UIListString> mods = new ObservableCollection<UIListString>();
+            ObservableCollection<ModFile> mods = new ObservableCollection<ModFile>();
 
             var data = System.IO.File.OpenText(filepath);
 
@@ -340,7 +340,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
             string line = data.ReadLine();
             while (line != null)
             {
-                mods.Add(new UIListString(line));
+                mods.Add(new ModFile(line, true));
 
                 line = data.ReadLine();
             }
@@ -354,7 +354,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         /// </summary>
         /// <param name="filepath">The filepath of the mod pack index file.</param>
         /// <param name="mods">A collection of UIListString objects representing the mods.</param>
-        public static void SaveModPackMods(string filepath, ObservableCollection<UIListString> mods)
+        public static void SaveModPackMods(string filepath, ObservableCollection<ModFile> mods)
         {
             CreateFileStructure();
 

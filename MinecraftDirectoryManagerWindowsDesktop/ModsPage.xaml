@@ -23,7 +23,15 @@
 
             <Label Content="Mods" Grid.Row="0"/>
 
-            <ListView Name="StoredModsListView" Grid.Row="1"></ListView>
+            <ListView Name="StoredModsListView" Grid.Row="1">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="true">
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Text}" />
+                        <GridViewColumn Header="MC Version" DisplayMemberBinding="{Binding MCVersion}"/>
+                        <GridViewColumn Header="Version" DisplayMemberBinding="{Binding Version}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
 
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
@@ -74,7 +82,15 @@
 
                 <Label Content="Mods in Mod Pack" Grid.Row="0"/>
 
-                <ListView Name="ModPackModsListView" Grid.Row="1"/>
+                <ListView Name="ModPackModsListView" Grid.Row="1">
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="true">
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Text}" />
+                            <GridViewColumn Header="MC Version" DisplayMemberBinding="{Binding MCVersion}"/>
+                            <GridViewColumn Header="Version" DisplayMemberBinding="{Binding Version}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
 
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>

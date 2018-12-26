@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Controls;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
 
 namespace MinecraftDirectoryManagerWindowsDesktop
 {
@@ -183,6 +184,150 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         public override string ToString()
         {
             return modpack;
+        }
+    }
+
+    public class ModFile : UIListString
+    {
+        public ModFile(string text, bool extractVersionFromText = true) : base(text)
+        {
+            if (extractVersionFromText)
+            {
+                MCVersion = new MCVersion(text, true);
+
+                try
+                {
+                    Version = new MCVersion(text, true, 1);
+                }
+                catch (ArgumentException)
+                {
+
+                    Version = null;
+                }
+            }
+            else
+            {
+                Version = null;
+                MCVersion = null;
+            }
+        }
+
+        public ModFile(string text, MCVersion mcVersion, MCVersion version) : base(text)
+        {
+            Version = version;
+            MCVersion = mcVersion;
+        }
+
+        private MCVersion version;
+        public MCVersion Version
+        {
+            get
+            {
+                return version;
+            }
+
+            set
+            {
+                version = value;
+                NotifyPropertyChanged("Version");
+            }
+        }
+
+        private MCVersion mcVersion;
+        public MCVersion MCVersion
+        {
+            get
+            {
+                return mcVersion;
+            }
+
+            set
+            {
+                mcVersion = value;
+                NotifyPropertyChanged("Version");
+            }
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj.GetType() != typeof(ModFile))
+            {
+                return false;
+            }
+            return Text == ((ModFile)obj).Text && Version == ((ModFile)obj).Version;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+    }
+
+
+
+    public class MCVersion
+    {
+        public int Major { get; set; }
+        public int Minor { get; set; }
+        public int Build { get; set; }
+
+        public MCVersion(string versionString, bool extractFromString = false, int matchIndex = 0)
+        {
+            if (extractFromString)
+            {
+                MatchCollection matches = Regex.Matches(versionString, @"\d+[\.,]\d+([\.,]\d)*");
+
+                if (matches.Count <= matchIndex)
+                {
+                    throw new ArgumentException("The version string didn't contain enough matches.");
+                }
+
+                versionString = matches[matchIndex].Value;
+            }
+
+            if (!Regex.IsMatch(versionString, @"^\d+[\.,]\d+([\.,]\d)*$"))
+            {
+                throw new ArgumentException("The version string provided contained characters that aren't valid for a version number.");
+            }
+
+            string[] numbers = versionString.Split('.', ',');
+
+            Major = Convert.ToInt32(numbers[0]);
+            Minor = Convert.ToInt32(numbers[1]);
+            if (numbers.Length > 2)
+            {
+                Build = Convert.ToInt32(numbers[2]);
+            }
+            else
+            {
+                Build = 0;
+            }
+        }
+
+        public MCVersion(int major, int minor, int build)
+        {
+            Major = major;
+            Minor = minor;
+            Build = build;
+        }
+
+        public override string ToString()
+        {
+            return Major + "." + Minor + "." + Build;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj.GetType() != typeof(MCVersion))
+            {
+                return false;
+            }
+            return Major == ((MCVersion)obj).Major && Minor == ((MCVersion)obj).Minor && Build == ((MCVersion)obj).Build;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

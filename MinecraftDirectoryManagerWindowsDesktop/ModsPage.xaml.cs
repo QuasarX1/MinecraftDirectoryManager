@@ -32,8 +32,8 @@ namespace MinecraftDirectoryManagerWindowsDesktop
             }
         }
 
-        public System.Collections.ObjectModel.ObservableCollection<UIListString> Mods;
-        public System.Collections.ObjectModel.ObservableCollection<UIListString> ModPackMods;
+        public System.Collections.ObjectModel.ObservableCollection<ModFile> Mods;
+        public System.Collections.ObjectModel.ObservableCollection<ModFile> ModPackMods;
         public System.Collections.ObjectModel.ObservableCollection<MCModPack> ModPacks;
         private string CurrentPackFilepath;
 
@@ -49,11 +49,11 @@ namespace MinecraftDirectoryManagerWindowsDesktop
                 Directory.CreateDirectory(ModsFolder);
             }
 
-            Mods = new System.Collections.ObjectModel.ObservableCollection<UIListString>();
+            Mods = new System.Collections.ObjectModel.ObservableCollection<ModFile>();
 
             foreach (string save in Directory.GetFiles(ModsFolder))
             {
-                Mods.Add(new UIListString(System.IO.Path.GetFileName(save)));
+                Mods.Add(new ModFile(System.IO.Path.GetFileName(save)));
             }
 
             StoredModsListView.ItemsSource = Mods;
@@ -101,7 +101,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
 
                 foreach (string subPath in path.Split(';'))
                 {
-                    Mods.Add(new UIListString(System.IO.Path.GetFileName(subPath)));
+                    Mods.Add(new ModFile(System.IO.Path.GetFileName(subPath)));
                 }
 
                 return true;
@@ -143,7 +143,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
             // Copy to list
             if (StoredModsListView.SelectedIndex != -1 && ModPacksListView.SelectedIndex != -1)
             {
-                if (!ModPackMods.Contains(Mods[StoredModsListView.SelectedIndex], new ModCompairer()))
+                if (!ModPackMods.Contains(Mods[StoredModsListView.SelectedIndex]))//, new ModCompairer()
                 {
                     ModPackMods.Add(Mods[StoredModsListView.SelectedIndex]);
                 }
@@ -172,16 +172,16 @@ namespace MinecraftDirectoryManagerWindowsDesktop
 
 
 
-    public class ModCompairer : EqualityComparer<UIListString>
-    {
-        public override bool Equals(UIListString x, UIListString y)
-        {
-            return (x.Text == y.Text) ? true : false;
-        }
+    //public class ModCompairer : EqualityComparer<ModFile>
+    //{
+    //    public override bool Equals(ModFile x, ModFile y)
+    //    {
+    //        return (x.Text == y.Text && x.Version == y.Version) ? true : false;
+    //    }
 
-        public override int GetHashCode(UIListString obj)
-        {
-            return obj.GetHashCode();
-        }
-    }
+    //    public override int GetHashCode(ModFile obj)
+    //    {
+    //        return obj.GetHashCode();
+    //    }
+    //}
 }
