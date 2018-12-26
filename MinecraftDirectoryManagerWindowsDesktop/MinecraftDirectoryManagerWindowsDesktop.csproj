@@ -32,7 +32,7 @@
     <PublisherName>Christopher Rowe</PublisherName>
     <WebPage>publish</WebPage>
     <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>1.2.1.%2a</ApplicationVersion>
+    <ApplicationVersion>1.2.2.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
