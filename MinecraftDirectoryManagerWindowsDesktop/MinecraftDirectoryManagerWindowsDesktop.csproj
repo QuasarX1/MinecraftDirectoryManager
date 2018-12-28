@@ -31,7 +31,7 @@
     <ProductName>Minecraft Directory Manager</ProductName>
     <PublisherName>Christopher Rowe</PublisherName>
     <WebPage>publish</WebPage>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.2.2.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>

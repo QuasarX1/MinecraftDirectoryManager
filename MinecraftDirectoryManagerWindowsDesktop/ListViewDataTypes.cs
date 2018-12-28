@@ -275,7 +275,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         {
             if (extractFromString)
             {
-                MatchCollection matches = Regex.Matches(versionString, @"\d+[\.,]\d+([\.,]\d)*");
+                MatchCollection matches = Regex.Matches(versionString, @"\d+[\.,]\d+([\.,]\d+)*");
 
                 if (matches.Count <= matchIndex)
                 {
@@ -285,7 +285,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
                 versionString = matches[matchIndex].Value;
             }
 
-            if (!Regex.IsMatch(versionString, @"^\d+[\.,]\d+([\.,]\d)*$"))
+            if (!Regex.IsMatch(versionString, @"^\d+[\.,]\d+([\.,]\d+)*$"))
             {
                 throw new ArgumentException("The version string provided contained characters that aren't valid for a version number.");
             }
