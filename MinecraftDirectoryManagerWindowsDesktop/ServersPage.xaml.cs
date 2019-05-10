@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,7 +63,20 @@ namespace MinecraftDirectoryManagerWindowsDesktop
 
         private void StartServerButton_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: open new window and start server
+            string serverRoot = Servers[ServersListView.SelectedIndex].Path;
+            string exePath = System.IO.Path.Combine(serverRoot, "win-x64", "MCServerAutomator.exe");
+            if (System.IO.File.Exists(exePath))
+            {
+                Process serverConsole = new Process();
+                serverConsole.StartInfo.FileName = exePath;
+                serverConsole.StartInfo.UseShellExecute = true;
+                serverConsole.StartInfo.WorkingDirectory = System.IO.Path.Combine(serverRoot, "win-x64");
+                serverConsole.Start();
+            }
+            else
+            {
+                MessageBox.Show("The server directory did not contain the file \"" + System.IO.Path.Combine(".", "win-x64", "MCServerAutomator.exe") + "\". This is required for launching the server.", "Error Launching Server");
+            }
         }
     }
 }
