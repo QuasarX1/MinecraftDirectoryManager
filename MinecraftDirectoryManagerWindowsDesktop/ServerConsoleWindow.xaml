@@ -1,0 +1,30 @@
+﻿<Window x:Class="MinecraftDirectoryManagerWindowsDesktop.ServerConsoleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MinecraftDirectoryManagerWindowsDesktop"
+        mc:Ignorable="d"
+        Title="Server Console Window" Height="450" Width="800" Closing="Window_Closing">
+    <StackPanel>
+        <RichTextBox Name="OutputRichTextBox">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="RichTextBox"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="8*" />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBox Name="CommandEntryTextBox" Text="Command Here" Grid.Column="0" />
+
+            <Button Name="CommandSubmissionButton" Content="Execute" Grid.Column="2" />
+        </Grid>
+    </StackPanel>
+</Window>

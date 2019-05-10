@@ -128,6 +128,9 @@
     <Compile Include="SavesPage.xaml.cs">
       <DependentUpon>SavesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ServerConsoleWindow.xaml.cs">
+      <DependentUpon>ServerConsoleWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ServersPage.xaml.cs">
       <DependentUpon>ServersPage.xaml</DependentUpon>
     </Compile>
@@ -176,6 +179,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SavesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ServerConsoleWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
