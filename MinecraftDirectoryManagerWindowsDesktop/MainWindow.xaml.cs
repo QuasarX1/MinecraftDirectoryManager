@@ -81,6 +81,11 @@ namespace MinecraftDirectoryManagerWindowsDesktop
             NavigateToPage(typeof(DirectoriesPage));
         }
 
+        private void ServersMenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigateToPage(typeof(ServersPage));
+        }
+
         private void SavesMenuButton_Click(object sender, RoutedEventArgs e)
         {
             NavigateToPage(typeof(SavesPage));

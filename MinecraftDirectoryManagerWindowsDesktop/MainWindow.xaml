@@ -31,7 +31,7 @@
 
             <Button Name="DirectoriesMenuButton" Content="Directories" Grid.Row="2" Click="DirectoriesMenuButton_Click" />
 
-            <Button Name="ServersMenuButton" Content="Servers" Grid.Row="3" Click="" />
+            <Button Name="ServersMenuButton" Content="Servers" Grid.Row="3" Click="ServersMenuButton_Click" />
 
             <Button Name="SavesMenuButton" Content="Saves" Grid.Row="4" Click="SavesMenuButton_Click" />
 
