@@ -238,5 +238,14 @@
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MDM_Server_Tools\MDM_Server_Tools.csproj">
+      <Project>{906d45df-06a4-448e-b3ef-1720680a0b27}</Project>
+      <Name>MDM_Server_Tools</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

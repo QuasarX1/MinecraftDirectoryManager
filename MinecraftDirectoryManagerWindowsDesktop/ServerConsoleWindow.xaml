@@ -22,7 +22,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <TextBox Name="CommandEntryTextBox" Text="Command Here" Grid.Column="0" />
+            <TextBox Name="CommandEntryTextBox" Text="Command Here" Grid.Column="0" KeyDown="CommandEntryTextBox_KeyDown" />
 
             <Button Name="CommandSubmissionButton" Content="Execute" Grid.Column="2" />
         </Grid>

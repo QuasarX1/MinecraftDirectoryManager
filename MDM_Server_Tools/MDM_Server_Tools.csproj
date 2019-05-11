@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="QuasarCode_Library">
+      <HintPath>..\..\..\..\..\OneDrive\Documents\All Documents\Programming\Code\C#\QuasarCode\QuasarCode\QuasarCode_Library\bin\Release\netstandard2.0\QuasarCode_Library.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

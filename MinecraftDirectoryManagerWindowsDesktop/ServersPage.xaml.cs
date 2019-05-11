@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using MDM_Server_Tools;
+
 using static MinecraftDirectoryManagerWindowsDesktop.BackEnd;
 
 namespace MinecraftDirectoryManagerWindowsDesktop
@@ -76,22 +78,8 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         {
             //TODO: open new child window and pass process to it
             string serverRoot = Servers[ServersListView.SelectedIndex].Path;
-            string exePath = System.IO.Path.Combine(serverRoot, "win-x64", "MCServerAutomator.exe");
-            if (System.IO.File.Exists(exePath))
-            {
-                Process serverConsole = CreateServerProcess(exePath, serverRoot);
-
-                serverConsole.StartInfo.UseShellExecute = false;
-                //serverConsole.StartInfo.RedirectStandardOutput = true;
-                //serverConsole.StartInfo.RedirectStandardInput= true;
-
-                ServerConsoleWindow serverWindow = new ServerConsoleWindow(serverConsole, Servers[ServersListView.SelectedIndex].Name);
-                serverWindow.Show();
-            }
-            else
-            {
-                MessageBox.Show("The server directory did not contain the file \"" + System.IO.Path.Combine(".", "win-x64", "MCServerAutomator.exe") + "\". This is required for launching the server.", "Error Launching Server");
-            }
+            ServerConsoleWindow serverWindow = new ServerConsoleWindow(serverRoot, Servers[ServersListView.SelectedIndex].Name);
+            serverWindow.Show();
         }
 
         private void StartExternalServerButton_Click(object sender, RoutedEventArgs e)
@@ -108,7 +96,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
             }
             else
             {
-                MessageBox.Show("The server directory did not contain the file \"" + System.IO.Path.Combine(".", "win-x64", "MCServerAutomator.exe") + "\". This is required for launching the server.", "Error Launching Server");
+                
             }
         }
     }
