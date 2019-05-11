@@ -29,59 +29,142 @@ namespace MinecraftDirectoryManagerWindowsDesktop
 
         private Process Server;
 
+        private string ServerRootPath;
+
         private System.IO.MemoryStream AccessStream;
+
         public ConsoleAccessStream DirectInput;
+
         public System.IO.StreamReader DirectOutput;
 
         public ServerConsoleWindow(string root, string name)
         {
             InitializeComponent();
 
-            this.Show();
+            this.AccessStream = new System.IO.MemoryStream();
 
-            AccessStream = new System.IO.MemoryStream();
-            DirectInput = new ConsoleAccessStream(AccessStream);
-            DirectOutput = new System.IO.StreamReader(AccessStream);
+            this.DirectInput = new ConsoleAccessStream(AccessStream);
+
+            this.DirectOutput = new System.IO.StreamReader(AccessStream);
 
             this.Title = name;
-            
-            IPAddress IPv4 = Tools.UpdateServerProperties(root, DirectInput, DirectOutput, SendKey);
-            string server = Tools.SelectServer(root, DirectInput, SendKey, ClearOutput);
-            string guiOption = Tools.SelectGUI(DirectInput, SendKey);
-            double memory = Tools.SelectMemory(DirectInput, DirectOutput, SendKey);
-            string externalIP = Tools.GetExternalIP();
-            Tools.OutputLaunchPreamble(server, IPv4, guiOption, memory, externalIP, DirectInput, SendKey, ClearOutput);
-            Server = Tools.CreateProcess(root, "", "No GUI", 4);
+            this.ServerRootPath = root;
 
-            //serverOutput = Server.StandardOutput;
-            //serverInput = Server.StandardInput;
-            Server.StartInfo.RedirectStandardOutput = true;
-            Server.StartInfo.RedirectStandardInput = true;
-            Server.StartInfo.CreateNoWindow = true;//TODO: change to false
-
-            Server.OutputDataReceived += WriteText;
-            Server.Exited += ServerClosed;
-
-            Server.Start();
-        }
-        
-        private void WriteText(object sender, DataReceivedEventArgs e)
-        {
-            ((Paragraph)OutputRichTextBox.Document.Blocks.LastBlock).Inlines.Add(e.Data);
+            this.Server = null;
         }
 
-        private void ReadCommand(object sender, DataReceivedEventArgs e)
+
+        public void WriteToOutput(string text)
         {
-            if (CommandEntryTextBox.Text != "")
-            {
-                Server.StandardInput.WriteLine(CommandEntryTextBox.Text);
-                CommandEntryTextBox.Text = "";
-            }
+            ((Paragraph)OutputRichTextBox.Document.Blocks.LastBlock).Inlines.Add(text);
+
+            Paragraph newLine = new Paragraph(new Run());
+            OutputRichTextBox.Document.Blocks.Add(newLine);
+            OutputRichTextBox.ScrollToEnd();
+        }
+
+        private void WriteToServer(string text)
+        {
+            Server.StandardInput.WriteLine(text);
         }
 
         public void ClearOutput()
         {
             ((Paragraph)OutputRichTextBox.Document.Blocks.LastBlock).Inlines.Clear();
+        }
+
+        private void SubmitCommandInBox()
+        {
+            if (CommandEntryTextBox.Text != "")
+            {
+                WriteToOutput(CommandEntryTextBox.Text);
+
+                if (Server != null && Server.HasExited == false) { WriteToServer(CommandEntryTextBox.Text); }
+
+                CommandEntryTextBox.Text = "";
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+        private void StartServerButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Enable and show the rest of the UI
+            StartServerButton.IsEnabled = false;
+            StartServerButton.Visibility = Visibility.Hidden;
+
+            OutputRichTextBox.Visibility = Visibility.Visible;
+
+            CommandEntryTextBox.IsEnabled = true;
+
+            CommandSubmissionButton.IsEnabled = true;
+
+
+            //// Start server
+            //IPAddress IPv4 = Tools.UpdateServerProperties(ServerRootPath, DirectInput, DirectOutput, SendKey);
+            //string server = Tools.SelectServer(ServerRootPath, DirectInput, SendKey, ClearOutput);
+            //string guiOption = Tools.SelectGUI(DirectInput, SendKey);
+            //double memory = Tools.SelectMemory(DirectInput, DirectOutput, SendKey);
+            //string externalIP = Tools.GetExternalIP();
+            //Tools.OutputLaunchPreamble(server, IPv4, guiOption, memory, externalIP, DirectInput, SendKey, ClearOutput);
+            //Server = Tools.CreateProcess(ServerRootPath, "", "No GUI", 4);
+
+            ////serverOutput = Server.StandardOutput;
+            ////serverInput = Server.StandardInput;
+
+            //Server.StartInfo.RedirectStandardOutput = true;
+            //Server.OutputDataReceived += WriteText;
+            //Server.StartInfo.RedirectStandardInput = true;
+
+            //Server.StartInfo.CreateNoWindow = true;//TODO: change to false?
+            
+            
+
+            //Server.Exited += ServerClosed;
+
+            //Server.Start();
+        }
+
+        private void CommandEntryTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                SubmitCommandInBox();
+            }
+            else
+            {
+
+                if(SendKey != null)
+                {
+                    SendKey(this, Convert.ToChar(e.Key));
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void CommandSubmissionButton_Click(object sender, RoutedEventArgs e)
+        {
+            SubmitCommandInBox();
+        }
+
+
+
+
+
+
+
+
+        private void WriteText(object sender, DataReceivedEventArgs e)
+        {
+            WriteToOutput(e.Data);
+            //WriteToOutput(Server.StandardOutput.ReadLine());
         }
 
         public void ServerClosed(object sender, EventArgs e)
@@ -91,15 +174,9 @@ namespace MinecraftDirectoryManagerWindowsDesktop
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Server.Kill();
-        }
-
-        private void CommandEntryTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (SendKey != null)
+            if (Server != null && Server.HasExited == false)
             {
-                SendKey(this, Convert.ToChar(e.Key));
-                e.Handled = true;
+                Server.Kill();
             }
         }
 
@@ -154,5 +231,7 @@ namespace MinecraftDirectoryManagerWindowsDesktop
                 OnWrite?.Invoke(this, new EventArgs());
             }
         }
+
+        
     }
 }

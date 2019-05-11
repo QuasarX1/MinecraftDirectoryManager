@@ -6,25 +6,31 @@
         xmlns:local="clr-namespace:MinecraftDirectoryManagerWindowsDesktop"
         mc:Ignorable="d"
         Title="Server Console Window" Height="450" Width="800" Closing="Window_Closing">
-    <StackPanel>
-        <RichTextBox Name="OutputRichTextBox">
-            <FlowDocument>
-                <Paragraph>
-                    <Run Text="RichTextBox"/>
-                </Paragraph>
-            </FlowDocument>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Button Name="StartServerButton" Content="Start Server" Click="StartServerButton_Click" />
+
+        <RichTextBox Name="OutputRichTextBox" Grid.Row="0" Background="Black" Foreground="White" Visibility="Hidden">
+            <RichTextBox.Resources>
+                <Style TargetType="{x:Type Paragraph}">
+                    <Setter Property="Margin" Value="0"/>
+                </Style>
+            </RichTextBox.Resources>
         </RichTextBox>
 
-        <Grid>
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="8*" />
-                <ColumnDefinition />
-                <ColumnDefinition />
+                <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
 
-            <TextBox Name="CommandEntryTextBox" Text="Command Here" Grid.Column="0" KeyDown="CommandEntryTextBox_KeyDown" />
+            <TextBox Name="CommandEntryTextBox" Grid.Column="0" KeyDown="CommandEntryTextBox_KeyDown" IsEnabled="False" />
 
-            <Button Name="CommandSubmissionButton" Content="Execute" Grid.Column="2" />
+            <Button Name="CommandSubmissionButton" Content="Execute" Grid.Column="1" IsEnabled="False" Click="CommandSubmissionButton_Click" />
         </Grid>
-    </StackPanel>
+    </Grid>
 </Window>
