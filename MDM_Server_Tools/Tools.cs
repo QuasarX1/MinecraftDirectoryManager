@@ -40,7 +40,7 @@ namespace MDM_Server_Tools
                 {
                     if (avalableIpv4.Count > 1)
                     {
-                        ip = QConsole.Option(avalableIpv4.ToArray(), "Select an IP:", output: output, keyPressEvent: SendKeyEvent);
+                        ip = QConsole.Option(avalableIpv4.ToArray(), ref SendKeyEvent, "Select an IP:", output: output);
                         output.WriteLine();
                     }
                     else
@@ -60,7 +60,7 @@ namespace MDM_Server_Tools
 
                 if (lines[levelTypeOptionIndexes[0]] == "level-type=DEFAULT" && Directory.Exists(System.IO.Path.Combine(root, "mods")) && (from file in Directory.GetFiles(System.IO.Path.Combine(root, "mods")) where Regex.IsMatch(file, @"BiomesOPlenty.*\.jar") select file).Count() > 0)
                 {
-                    if (QConsole.Option(new string[] { "No", "Yes" }, "Enable Biomes O' Plenty?", output: output, keyPressEvent: SendKeyEvent) == "Yes")
+                    if (QConsole.Option(new string[] { "No", "Yes" }, ref SendKeyEvent, "Enable Biomes O' Plenty?", output: output) == "Yes")
                     {
                         lines[levelTypeOptionIndexes[0]] = "level-type=BIOMESOP";
                     }
@@ -71,7 +71,7 @@ namespace MDM_Server_Tools
                 int[] motdOptionIndexes = (from option in lines where Regex.IsMatch(option, @"^motd=.*") select lines.IndexOf(option)).ToArray();
 
 
-                if (QConsole.Option(new string[] { "No", "Yes" }, "Change the message of the day?", output: output, keyPressEvent: SendKeyEvent) == "Yes")
+                if (QConsole.Option(new string[] { "No", "Yes" }, ref SendKeyEvent, "Change the message of the day?", output: output) == "Yes")
                 {
                     lines[motdOptionIndexes[0]] = "motd=" + QConsole.Input("New motd >>> ", output: output, input: input);
                 }
@@ -115,7 +115,7 @@ namespace MDM_Server_Tools
                 if (avalableServers.Count > 1)
                 {
                     output.WriteLine();
-                    selectedServer = QConsole.Option(avalableServers.ToArray(), "Select a server:", output: output, keyPressEvent: SendKeyEvent);
+                    selectedServer = QConsole.Option(avalableServers.ToArray(), ref SendKeyEvent, "Select a server:", output: output);
                     output.WriteLine();
                 }
                 else
@@ -140,7 +140,7 @@ namespace MDM_Server_Tools
         static public string SelectGUI(TextWriter output = null, EventHandler<char> SendKeyEvent = null)
         {
             List<string> options = new List<string> { "GUI", "No GUI" };
-            string guiOption = QConsole.Option(options.ToArray(), "Select a launch option:", output: output, keyPressEvent: SendKeyEvent);
+            string guiOption = QConsole.Option(options.ToArray(), ref SendKeyEvent, "Select a launch option:", output: output);
             return guiOption;
         }
 
@@ -148,7 +148,7 @@ namespace MDM_Server_Tools
         {
             double memory;
 
-            if (QConsole.Option(new string[] { "No", "Yes" }, "Alocate custom memory ammount? (Deafult is 4GB)", output: output, keyPressEvent: SendKeyEvent) == "Yes")
+            if (QConsole.Option(new string[] { "No", "Yes" }, ref SendKeyEvent, "Alocate custom memory ammount? (Deafult is 4GB)", output: output) == "Yes")
             {
                 memory = Convert.ToInt16(QConsole.Input("Gigabytes of memory >>> ", Validators.IsInt, "The value must be an integer.", output: output, input: input));
             }
