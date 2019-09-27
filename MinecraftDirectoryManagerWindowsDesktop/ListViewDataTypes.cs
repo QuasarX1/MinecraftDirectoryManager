@@ -193,16 +193,24 @@ namespace MinecraftDirectoryManagerWindowsDesktop
         {
             if (extractVersionFromText)
             {
-                MCVersion = new MCVersion(text, true);
-
                 try
                 {
-                    Version = new MCVersion(text, true, 1);
+                    MCVersion = new MCVersion(text, true);
+
+                    try
+                    {
+                        Version = new MCVersion(text, true, 1);
+                    }
+                    catch (ArgumentException)
+                    {
+
+                        Version = null;
+                    }
                 }
                 catch (ArgumentException)
                 {
 
-                    Version = null;
+                    MCVersion = null;
                 }
             }
             else
