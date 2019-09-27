@@ -22,7 +22,7 @@
             </ListView.View>
         </ListView>
 
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" Margin="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -35,8 +35,8 @@
                 <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
 
-            <Button Name="StartServerButton" Content="Start Server" Grid.Row="1" Grid.Column="0" Click="StartServerButton_Click" IsEnabled="False" />
-            <Button Name="StartExternalServerButton" Content="Start Server Seperately" Grid.Row="1" Grid.Column="3" Click="StartExternalServerButton_Click" IsEnabled="False" />
+            <Button Name="StartServerButton" Content="Start Server" Grid.Row="1" Grid.Column="0" Margin="1" Click="StartServerButton_Click" IsEnabled="False" />
+            <Button Name="StartExternalServerButton" Content="Start Server Seperately" Grid.Row="1" Grid.Column="3" Margin="1" Click="StartExternalServerButton_Click" IsEnabled="False" />
         </Grid>
     </Grid>
 </Page>

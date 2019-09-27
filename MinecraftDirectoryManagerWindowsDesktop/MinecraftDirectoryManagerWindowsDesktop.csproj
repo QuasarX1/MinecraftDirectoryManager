@@ -79,6 +79,10 @@
     <ManifestKeyFile>MinecraftDirectoryManagerWindowsDesktop_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="QuasarCode_Library, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\OneDrive\Documents\All Documents\Programming\Code\C#\QuasarCode\QuasarCode\QuasarCode_Library\bin\Release\netstandard2.0\QuasarCode_Library.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />

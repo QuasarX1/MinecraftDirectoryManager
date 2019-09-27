@@ -13,8 +13,11 @@ namespace MCServerAutomator
 
             IPAddress IPv4 = UpdateServerProperties(root);
             string server = SelectServer(root);
+            Console.WriteLine();
             string guiOption = SelectGUI();
+            Console.WriteLine();
             double memory = SelectMemory();
+            Console.WriteLine();
             string externalIP = GetExternalIP();
             OutputLaunchPreamble(server, IPv4, guiOption, memory, externalIP);
             System.Diagnostics.Process process = CreateProcess(root, server, guiOption, memory);
